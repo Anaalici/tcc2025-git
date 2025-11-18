@@ -1,8 +1,6 @@
 <?php
-include 'conexao.php';
 
-$mensagem = ""; 
-
+include '../conexao.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
