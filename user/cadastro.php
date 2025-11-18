@@ -1,3 +1,70 @@
+<?php
+/*
+include '../conexao.php';
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    
+    $nome = trim($_POST['nomeUsuario'] ?? '');
+    $dataNasc = trim($_POST['dataNasc'] ?? '');
+    $cpf = trim($_POST['cpf'] ?? '');
+    $email = trim($_POST['email'] ?? '');
+    $contato = trim($_POST['contato'] ?? '');
+    $senha = $_POST['senha'] ?? ''; 
+    
+    if (empty($nome) || empty($dataNasc) || empty($cpf) || empty($email) || empty($contato) || empty($senha)) {
+        $mensagem = "ERRO: Por favor, preencha todos os campos obrigatórios.";
+    } else {
+        
+        $sql_check = "SELECT cpf FROM usuario WHERE cpf = ?";
+        
+        $stmt_check = $conexao->prepare($sql_check);
+
+        if ($stmt_check === false) {
+            $mensagem = "Erro na preparação da consulta de verificação de CPF: " . $conexao->error;
+        } else {
+            
+            $stmt_check->bind_param("s", $cpf);
+            $stmt_check->execute();
+            $result_check = $stmt_check->get_result();
+
+            if ($result_check->num_rows > 0) {
+                $mensagem = "ERRO: Já existe um usuário cadastrado com este CPF.";
+            } else {
+                
+                $senha_hash = password_hash($senha, PASSWORD_DEFAULT);
+                
+                $sql_insert = "INSERT INTO usuario (nomeUsuario, dataNasc, cpf, email, contato, senha) 
+                               VALUES (?, ?, ?, ?, ?, ?)";
+                
+                $stmt_insert = $conexao->prepare($sql_insert);
+                
+                if ($stmt_insert === false) {
+                    $mensagem = "Erro na preparação da consulta de inserção: " . $conexao->error;
+                } else {
+                    
+                    $stmt_insert->bind_param("ssssss", $nome, $dataNasc, $cpf, $email, $contato, $senha_hash);
+                    
+                    if ($stmt_insert->execute()) {
+                        $mensagem = "USUÁRIO CADASTRADO COM SUCESSO! Redirecionando...";
+                        
+                        header("refresh:3; url=index.html");
+                        exit();
+                        
+                    } else {
+                        $mensagem = "ERRO AO CADASTRAR: " . $stmt_insert->error;
+                    }
+                    
+                    $stmt_insert->close();
+                }
+            }
+            
+            $stmt_check->close();
+        }
+    }
+}
+     */
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -20,12 +87,19 @@
 
         <div class="inputs">
         <form class="formulario" method="POST" action="cadastro.php">
-                <input class="inputLogin" type="text" id="userCad" name="usuario" placeholder="Usuário" required>
-
-                <input class="inputLogin" type="email" id="emailCad" name="emailCadastro" placeholder="E-mail" required>
-
-                <input class="inputLogin" type="password" id="senhaCad" name="password" placeholder="Senha" required>
         
+            <input class="inputLogin" type="text" name="nomeUsuario" placeholder="Nome Completo" required autocomplete="off">
+            
+            <input class="inputLogin" type="text" name="cpf" maxlength="14" placeholder="CPF" required autocomplete="off">
+
+            <input class="inputLogin" type="email" name="email" placeholder="E-mail" required autocomplete="off">
+
+            <input class="inputLogin" type="text" name="contato" placeholder="Telefone" maxlength="11" required autocomplete="off">
+
+            <input class="inputLogin" type="password" id="senha" name="senha" placeholder="Senha" required autocomplete="off">
+
+            <input class="inputLogin" type="date" name="dataNasc" required>
+
 
                     <div class="EsqueciS">
                         <input type="checkbox" id="aceitarTermos">
@@ -33,7 +107,8 @@
                         <label for="aceitarTermos" id="labelSenha">Li e aceito o <a href="../user/termos.php">Termo de Uso</a></label> 
                         <a class="senha" href="#">Esqueci senha</a>
                     </div>
-            <button class="btn">Cadastrar</button>
+
+            <input class="btn" type="submit" name="cadastrar" value="Cadastrar">
 
             <p class="cadastro-conta">Já tem uma conta? <a href="../user/login.php" class="cadastro">Entrar</a></p>
         </form>

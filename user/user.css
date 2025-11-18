@@ -166,8 +166,8 @@ form {
 
 .lado-esquerdo{
     width: 40em;
-    height: 40em;
-    padding: 4em 1em 0 13em;
+    height: 30em;
+    padding: 8.5em 1em 0 13em;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -192,7 +192,7 @@ form {
 .formulario{
     display: flex;
     flex-direction: column;
-    gap: 0.2em;
+    gap: 0.1em;
     max-width: 28em;
 }
 
@@ -201,19 +201,13 @@ form {
     height: 3.7em;
     padding-left: 1em;
     width: 30em;
-    color: #7b7b7b;
+    color: #7b7b7b !important;
     border: 0;
     background-color: #fff0d9;
     outline: none;
     margin-bottom: 1.2em;
 }
-/*
-.input-box input{
-    border: none;
-    background: transparent;
-    width: 100%;
-    outline: none;
-}*/
+
 
 .checks{
     display: flex;
