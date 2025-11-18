@@ -1,53 +1,60 @@
 <?php
-include('../conexao.php'); 
+session_start();
 
-$mensagem_erro = "";
-$email_digitado = "";
+include '../conexao.php'; 
 
-if (isset($_SESSION['idUsuario'])) {
-    header("Location: ../index.html");
-    exit();
-}
+
+$mensagem = ""; 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
-    $email = $conexao->real_escape_string($_POST['email']);
-    $senha_digitada = $_POST['senha'];
-    $email_digitado = $email; 
-
-    $stmt = $conexao->prepare("SELECT idUsuario, nomeUsuario, senha FROM usuario WHERE email = ?");
+    $email = trim($_POST['email'] ?? '');
+    $senha = $_POST['senha'] ?? ''; 
     
-    if ($stmt === false) {
-        $mensagem_erro = "Erro interno no sistema de consulta.";
+    if (empty($email) || empty($senha)) {
+        $mensagem = "ERRO: Por favor, preencha o email e a senha.";
     } else {
-        $stmt->bind_param("s", $email);
-        $stmt->execute();
-        $result = $stmt->get_result();
+        
+        $sql_login = "SELECT idUsuario, nomeUsuario, senha FROM usuario WHERE email = ?";
+        
+        $stmt_login = $conexao->prepare($sql_login);
 
-        if ($result->num_rows == 1) {
-            $usuario = $result->fetch_assoc();
+        if ($stmt_login === false) {
+            $mensagem = "Erro na preparação da consulta de login: " . $conexao->error;
+        } else {
             
-            if (password_verify($senha_digitada, $usuario['senha'])) {
+            $stmt_login->bind_param("s", $email);
+            $stmt_login->execute();
+            $result_login = $stmt_login->get_result();
+
+            if ($result_login->num_rows === 1) {
                 
-                $_SESSION['idUsuario'] = $usuario['idUsuario'];
-                $_SESSION['nomeUsuario'] = $usuario['nomeUsuario'];
+                $usuario = $result_login->fetch_assoc();
+                $senha_hash_bd = $usuario['senha']; 
                 
-                header("Location: ../index.html"); 
-                $stmt->close();
-                $conexao->close(); 
-                exit(); 
+                if (password_verify($senha, $senha_hash_bd)) {
+                    
+                    
+                    $_SESSION['idUsuario'] = $usuario['idUsuario'];
+                    $_SESSION['nomeUsuario'] = $usuario['nomeUsuario'];
+                    
+                    $mensagem = "LOGIN EFETUADO COM SUCESSO! Redirecionando...";
+                    
+                    header("refresh:3; url=../index.html"); 
+                    exit();
+                    
+                } else {
+                    $mensagem = "ERRO: Email ou senha incorretos.";
+                }
+                
             } else {
-                $mensagem_erro = "Senha incorreta.";
+                $mensagem = "ERRO: Email ou senha incorretos.";
             }
             
-        } else {
-            $mensagem_erro = "Email não encontrado ou incorreto.";
+            $stmt_login->close();
         }
-
-        $stmt->close();
     }
 }
-$conexao->close();
 ?>
 
 <!DOCTYPE html>

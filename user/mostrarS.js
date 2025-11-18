@@ -14,15 +14,3 @@ function togglePasswordVisibilityCheckbox() {
             label.textContent = 'Mostrar Senha 👁️'; 
         }
     }
-
-    document.addEventListener("DOMContentLoaded", () => {
-    const formulario = document.querySelector(".formulario");
-    const aceitarTermos = document.getElementById("aceitarTermos");
-
-    formulario.addEventListener("submit", (e) => {
-        if (!aceitarTermos.checked) {
-            e.preventDefault();
-            alert("Você precisa aceitar os Termos de Uso para continuar.");
-        }
-    });
-});

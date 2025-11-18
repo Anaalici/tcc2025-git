@@ -103,9 +103,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
                     <div class="EsqueciS">
-                        <input type="checkbox" id="mostrarSenha">
+                        <input type="checkbox" id="mostrarSenha" onclick="togglePasswordVisibilityCheckbox()">
+                        <label for="mostrarSenha" id="labelSenha">Mostrar Senha 👁️</label> 
                         
-                        <label for="mostrarSenha" id="labelSenha">Li e aceito o <a href="termos.php">Termo de Uso</a></label> 
+                        <input type="checkbox" id="termos">
+                        <label for="termos" id="labelSenha">Li e aceito o <a href="termos.php">Termo de Uso</a></label> 
                         <a class="senha" href="#">Esqueci senha</a>
                     </div>
 
