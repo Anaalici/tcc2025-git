@@ -9,30 +9,33 @@ body {
 }
 
 .circle {
-    display: flex;
     width: 70em;
-    height: 80em;
+    height: 70em;
     background-color: #faa938;
     border-radius: 50%;
-    position: fixed;
-    top: 20em;
-    left: 10em;
+    position: absolute;
+    top: 50%;
+    left: 15%;
     transform: translateY(-50%) translateX(-50%);
+    z-index: 1;
 }
 
 
 .imgSign {
-    position: absolute;
-    height: 40em;
     width: 40em;
-    left: 37em;
-    top: 30em;
+    height: 40em;
+    border-radius: 50%;
+    position: absolute;
+    top: 56%;
+    left: 75%;
+    transform: translateY(-50%) translateX(-50%);
+    z-index: 1;
 }
 
 .contanerBranco {
     position: absolute;
-    top: 36em;
-    right: -45em;
+    top: 22em;
+    left: 85em;
 
 }
 
@@ -62,7 +65,15 @@ form {
     gap: 1em;
 }
 
-.inputLogin {
+.inputLogin {/*
+    
+    white-space: nowrap;
+    height: 3.5em;
+    padding-left: 1em;
+    width: 25em;
+    color: #7b7b7b;
+    border: 0;
+    background-color: #fff0d9;*/
     white-space: nowrap;
     height: 3.5em;
     padding-left: 1em;
@@ -70,6 +81,8 @@ form {
     color: #7b7b7b;
     border: 0;
     background-color: #fff0d9;
+    outline: none;
+    margin-bottom: 1.2em;
 }
 
 .inputLogin:focus {
@@ -85,8 +98,9 @@ form {
 }
 
 .EsqueciS {
-    margin-top: 1em;
-    gap: 1em;
+    white-space: nowrap;
+    display: flex;
+    gap: 0.1em;
 }
 
 .button {
@@ -97,7 +111,7 @@ form {
     font-size: 1.3em;
     width: 6em;
     height: 2em;
-    margin: 2.5em 7em 0 0;
+    margin: 1.5em 5em 0 0;
 }
 
 
@@ -123,7 +137,7 @@ form {
 }
 
 .cadastro-conta {
-    padding: 0 2em 0 0;
+    padding: 0.5em 2em 0 2em;
     color: #000;
     font-family: 'Roboto', sans-serif;
     font-weight: 400
@@ -151,12 +165,14 @@ form {
 
 
 .lado-esquerdo{
-    width: 50%;
-    padding: 7em 11em 7em 13em;
+    width: 40em;
+    height: 40em;
+    padding: 4em 1em 0 13em;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    position: fixed;
+    position: relative;
+    z-index: 10;
 }
 
 .lado-esquerdo h1{
@@ -176,26 +192,28 @@ form {
 .formulario{
     display: flex;
     flex-direction: column;
-    gap: 1.2em;
+    gap: 0.2em;
     max-width: 28em;
 }
 
-.input-box{
+.inputLogin{
     white-space: nowrap;
-    height: 3.5em;
+    height: 3.7em;
     padding-left: 1em;
-    width: 25em;
+    width: 30em;
     color: #7b7b7b;
     border: 0;
     background-color: #fff0d9;
+    outline: none;
+    margin-bottom: 1.2em;
 }
-
+/*
 .input-box input{
     border: none;
     background: transparent;
     width: 100%;
     outline: none;
-}
+}*/
 
 .checks{
     display: flex;
@@ -222,27 +240,30 @@ form {
 .lado-direito{
     width: 50%;
     position: relative;
+    overflow: hidden;
+    z-index: 5;
 }
 
 .fundo-laranja{
-    display: flex;
     width: 70em;
-    height: 80em;
+    height: 70em;
     background-color: #faa938;
     border-radius: 50%;
-    position: fixed;
-    top: 20em;
-    left: 95em;
+    position: absolute;
+    top: 50%;
+    left: 70%;
     transform: translateY(-50%) translateX(-50%);
+    z-index: 1;
 }
 
 .img-cadastro{
     position: absolute;
     height: 40em;
     width: 40em;
-    left: 47em;
-    top: 12em;   
-    position: fixed;
+    left: 10em;
+    top: 65%;   
+    transform: translate(-50%, -50%);
+    z-index: 2;
 }
 
 .fundo-laranja,
