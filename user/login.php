@@ -1,57 +1,49 @@
 <?php
 session_start();
+include '../conexao.php';
 
-include '../conexao.php'; 
+$mensagem = "";
 
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
-$mensagem = ""; 
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    
     $email = trim($_POST['email'] ?? '');
-    $senha = $_POST['senha'] ?? ''; 
-    
+    $senha = $_POST['senha'] ?? '';
+
     if (empty($email) || empty($senha)) {
-        $mensagem = "ERRO: Por favor, preencha o email e a senha.";
+        $mensagem = "Preencha email e senha.";
     } else {
-        
-        $sql_login = "SELECT idUsuario, nomeUsuario, senha FROM usuario WHERE email = ?";
-        
-        $stmt_login = $conexao->prepare($sql_login);
 
-        if ($stmt_login === false) {
-            $mensagem = "Erro na preparação da consulta de login: " . $conexao->error;
+        $sql = "SELECT idUsuario, senha FROM usuario WHERE email = ?";
+        $stmt = $conexao->prepare($sql);
+
+        if (!$stmt) {
+            $mensagem = "Erro de consulta: " . $conexao->error;
         } else {
-            
-            $stmt_login->bind_param("s", $email);
-            $stmt_login->execute();
-            $result_login = $stmt_login->get_result();
+            $stmt->bind_param("s", $email);
+            $stmt->execute();
+            $resultado = $stmt->get_result();
 
-            if ($result_login->num_rows === 1) {
-                
-                $usuario = $result_login->fetch_assoc();
-                $senha_hash_bd = $usuario['senha']; 
-                
+            if ($resultado->num_rows === 1) {
+
+                $usuario = $resultado->fetch_assoc();
+                $senha_hash_bd = $usuario['senha'];
+
                 if (password_verify($senha, $senha_hash_bd)) {
-                    
-                    
+
                     $_SESSION['idUsuario'] = $usuario['idUsuario'];
-                    $_SESSION['nomeUsuario'] = $usuario['nomeUsuario'];
-                    
-                    $mensagem = "LOGIN EFETUADO COM SUCESSO! Redirecionando...";
-                    
-                    header("refresh:3; url=../index.html"); 
+
+                    header("Location: ../index.html");
                     exit();
-                    
+
                 } else {
-                    $mensagem = "ERRO: Email ou senha incorretos.";
+                    $mensagem = "Email ou senha incorretos.";
                 }
-                
+
             } else {
-                $mensagem = "ERRO: Email ou senha incorretos.";
+                $mensagem = "Email ou senha incorretos.";
             }
-            
-            $stmt_login->close();
+
+            $stmt->close();
         }
     }
 }
@@ -79,7 +71,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
 
             <div class="inputs">
-                <form method="POST" action="login.php" autocomplete="off"> 
+                <form method="POST" action="./login.php" autocomplete="off">
+
+                <input type="text" name="fakeuser" autocomplete="username" style="display:none">
+                <input type="password" name="fakepass" autocomplete="new-password" style="display:none">
                     
                     <input class="inputLogin" type="email" name="email" placeholder="Email" required autocomplete="off">
                     

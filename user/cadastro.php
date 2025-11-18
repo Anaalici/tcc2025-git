@@ -88,8 +88,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <div class="inputs">
         <form class="formulario" method="POST" action="cadastro.php">
+
+            <input type="text" name="fakeuser" autocomplete="username" style="display:none">
+            <input type="password" name="fakepass" autocomplete="new-password" style="display:none">
         
-            <input class="inputLogin" type="text" name="nomeUsuario" placeholder="Nome Completo" required autocomplete="off">
+            <input class="inputLogin" type="text" name="nomeUsuario" placeholder="Username" required autocomplete="off">
 
             <input class="inputLogin" type="date" name="dataNasc" required autocomplete="off">
             
