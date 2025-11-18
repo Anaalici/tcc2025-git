@@ -1,6 +1,7 @@
 <?php
-
 include '../conexao.php';
+
+$mensagem = ""; 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
@@ -47,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     if ($stmt_insert->execute()) {
                         $mensagem = "USUÁRIO CADASTRADO COM SUCESSO! Redirecionando...";
                         
-                        header("refresh:3; url=index.html");
+                        header("refresh:3; url=../index.html");
                         exit();
                         
                     } else {
@@ -70,6 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../user/user.css">
+    <script src="mostrarS.js" defer></script>
     <title>Cadastro - Receitas de Mestre</title>
 </head>
 <body>
@@ -101,13 +103,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
 
                     <div class="EsqueciS">
-                        <input type="checkbox" id="mostrarSenha">
+                        <input type="checkbox" id="mostrarSenha" onclick="togglePasswordVisibilityCheckbox()">
+                        <label for="mostrarSenha" id="labelSenha">Mostrar Senha 👁️</label> 
                         
-                        <label for="mostrarSenha" id="labelSenha">Li e aceito o <a href="termos.php">Termo de Uso</a></label> 
+                        <input type="checkbox" id="aceitaTermos">
+                        <label for="aceitaTermos" id="labelSenha">Li e aceito o <a href="termos.php">Termo de Uso</a></label> 
                         <a class="senha" href="#">Esqueci senha</a>
                     </div>
 
-            <input class="btn" type="submit" name="cadastrar" value="CADASTRAR">
+            <input class="btn" type="submit" name="cadastrar" value="Cadastrar">
 
             <p class="cadastro-conta">Já tem uma conta? <a href="../user/login.php" class="cadastro">Entrar</a></p>
         </form>
