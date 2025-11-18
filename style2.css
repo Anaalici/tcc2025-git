@@ -1,0 +1,345 @@
+body {
+    background-color: #FCF8F3;
+}
+
+#home {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 5em;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    height: 500vh;
+}
+
+#main-header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    padding: 3em 1em;
+    background-color: transparent;
+    z-index: 1000;
+}
+
+#main-header.scrolled {
+    background-color: #fff;
+    height: 3em;
+}
+
+/*Section pesquisa*/
+
+.pesquisameio {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #fff;
+    border-radius: 1em;
+    height: 13em;
+    width: 80em;
+    margin: 0 auto;
+    margin-bottom: 4em;
+    margin-top: 3em;
+}
+
+.h2search {
+    padding: 0 0 0 2em;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    color: #71350B;
+    margin-top: 1em;
+    font-size: 1.6em;
+    margin-bottom: 0.3em;
+}
+
+.pesquisa {
+    display: flex;
+    border: 0.1em solid #71350B;
+    background-color: #00000000;
+    width: 20em;
+    height: 2.5em;
+    margin: 1em auto;
+    border-radius: 1em;
+    padding: 0.5em 0.7em;
+    margin-left: 2.8em;
+    color: #71350B;
+}
+
+#meuInput {
+    padding: 0.5em;
+    border: none;
+    background-color: transparent;
+    width: 100%;
+    outline: none;
+}
+
+.search label {
+    font-size: 0.8em;
+    height: 1em;
+}
+
+
+.botaoEnviar {
+    margin-left: 24em;
+    margin-top: -3.4em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 6em;
+    height: 2.4em;
+    font-size: 1em;
+    background-color: #f39200;
+    color: #fff !important;
+    border-radius: 1em;
+    cursor: pointer;
+}
+
+.receitas {
+    display: flex;
+    justify-content: center;
+    background-color: #000;
+    height: 23em;
+    width: 90em;
+    border-radius: 1em;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    gap: 1em;
+    padding: 2em;
+    background-color: #FCF8F3;
+    margin-bottom: 30em;
+}
+
+.card1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 18em;
+    height: 19em;
+    padding: 1em;
+    border-radius: 3em;
+    background-color: #fff;
+    text-decoration: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card1 img {
+    width: 17em;
+    height: 13em;
+    object-fit: cover;
+    border-radius: 2em;
+}
+
+.card1:hover {
+    transform: translateY(-0.3em);
+    box-shadow: 0 0.5em 1em rgba(0, 0, 0, 0.15);
+}
+
+.card1::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0);
+    transition: background-color 0.4s ease;
+    border-radius: 2em;
+    z-index: 1;
+}
+
+.card1::after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 1.2em;
+    font-weight: bold;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 2;
+}
+
+.card1:hover::before {
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.card1:hover::after {
+    opacity: 1;
+}
+
+.card1:nth-child(1)::after {
+    content: "Japonesa";
+}
+
+.card1:nth-child(2)::after {
+    content: "Vegano";
+}
+
+.card1:nth-child(3)::after {
+    content: "Massa Doce";
+}
+
+.card1:nth-child(4)::after {
+    content: "Lanches";
+}
+
+#carrossel {
+    width: 80em;
+    overflow: hidden;
+    position: relative;
+}
+
+.vistasR {
+    margin-top: 20em;
+    font-family: Arial, sans-serif;
+    font-size: 1.3em;
+    color: #5c2c09;
+    margin-right: 48em;
+}
+
+.carrossel-track {
+    height: 22em;
+    margin-top: 1.5em;
+    display: flex;
+    transition: transform 0.6s ease-in-out;
+}
+
+.car-item {
+    min-width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2em;
+    justify-content: space-between;
+    float: left;
+    gap: 0.5em;
+}
+
+.car-item img {
+    width: 36em;
+    height: 22em;
+    border-radius: 1em 0 0 1em;
+}
+
+.info-slide {
+    background-color: #F5EBE0;
+    height: 22em;
+    width: 80em;
+    border-radius: 0 1em 1em 0;
+}
+
+.titulo {
+    color: #faa938;
+    font-family: Arial, sans-serif;
+    font-size: 2.5em;
+    margin-top: 2em;
+    line-height: 1.3em;
+    text-align: left;
+    padding: 0 0 0 1em;
+}
+
+.titulo:hover {
+    color: #faa938 !important;
+}
+
+.subtitulo {
+    color: #000;
+    font-family: Arial, sans-serif;
+    font-size: 1.3em;
+    text-align: left;
+    padding: 0.6em 0 0 2.3em;
+}
+
+.btn-receitas {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f39200;
+    width: 7em;
+    height: 2em;
+    border-radius: 1em;
+    justify-content: center;
+    margin-top: 2em;
+    border: none;
+    margin-right: 32em;
+    color: #fff !important;
+}
+
+
+
+/*Aba contato*/
+.contato-container {
+    position: fixed;
+    overflow: hidden;
+      top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;  
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.875em 1.25em;
+}
+
+.form-contato {
+    width: 100%;
+    max-width: 43.75em;
+    display: flex;
+    flex-direction: column;
+    gap: 1.125em;
+}
+
+.titulo-contato {
+    margin-top: 5.5em;
+    margin-bottom: 1.5em;
+    text-align: center;
+    color: #4a2e1b;
+    font-size: 1em;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+}
+
+.form-contato input,
+.form-contato select,
+.form-contato textarea {
+    width: 100%;
+    padding: 0.875em;
+    border-radius: 0.5em;
+    border: 0.0625em solid #eee;
+    background: #faf6ef;
+    font-size: 0.9375em;
+    outline: none;
+}
+
+.form-contato input:focus,
+.form-contato select:focus,
+.form-contato textarea:focus {
+    border-color: #000;
+}
+
+.form-contato label {
+    font-size: 0.9375em;
+    color: #4a2e1b;
+}
+
+.btn-enviar {
+    width: 9.375em;
+    padding: 0.75em;
+    border: none;
+    border-radius: 1.875em;
+    background: #f39200;
+    color: #fff;
+    font-size: 1.0625em;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-enviar:hover {
+    background: #ff3a00;
+}

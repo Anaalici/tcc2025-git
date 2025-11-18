@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contato</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style2.css">
+    <link rel="icon" href="/img/favicon.png" type="image/png">
+</head>
+
+<body>
+
+        <section id="home">
+        <header id="main-header">
+            <div class="container">
+                <div class="flex">
+                    <a href="index.html"><img class="logo" src="./img/LogoTCC.png"></a>
+                    <nav>
+                        <ul class="menu">
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="#receitas">Receitas</a></li>
+                            <li><a href="contato.html">Contato</a></li>
+                            <li><a href="#favoritos">Favoritad<span class="coracao"><i
+                                            class="fas fa-heart"></i></span>s</a></li>
+
+                            <!-- <div class="toggle-container">
+                            <label class="switch">
+                                <input type="checkbox" id="togglePaginas">
+                                <span class="slidel-toggle">
+                                    <span class="circle" id="circle">
+                                        <span id="iconeSwitch">🍴</span>
+                                    </span>
+                                </span>
+                            </label>
+                        </div>   
+
+                            <div class="search">
+                                <label for="searchInput">
+                                    <span <i class="fa-solid fa-magnifying-glass"></i></span>
+                                </label>
+                                <input type="text" id="searchInput" placeholder="Pesquisar">
+                            </div>-->
+
+                            <div class="userlogin">
+                                <a href="login.php"><img class="loginuser" src="./img/user.png" alt=""></a>
+                            </div>
+
+
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+    </section>
+
+    <section class="contato-container">
+        <h2 class="titulo-contato">Fale diretamente com nossos chefs especialistas, sempre prontos para ajudar você a cozinhar com mais praticidade e sabor.</h2>
+        <form class="form-contato">
+            <label for="nome">Nome</label>
+            <input type="text" id="nome" placeholder="Digite seu nome">
+
+            <label for="email">E-mail</label>
+            <input type="email" id="email" placeholder="Digite seu e-mail">
+
+            <label for="assunto">Assunto</label>
+            <select id="assunto">
+                <option value="">---</option>
+                <option value="duvida">Dúvida</option>
+                <option value="comercial">Falar com departamento comercial</option>
+                <option value="erro">Comentar sobre erro encontrado</option>
+                <option value="sugestao">Fazer uma sugestão, crítica ou elogio</option>
+                <option value="outro">Outros</option>
+            </select>
+
+            <label for="mensagem">Sua mensagem</label>
+            <textarea class="" id="mensagem" rows="6" placeholder="Digite aqui sua mensagem"></textarea>
+
+            <button type="submit" class="btn-enviar">Enviar</button>
+        </form>
+    </section>
+
+
+    <script src="script.js" defer></script>
+
+</body>
+</html>

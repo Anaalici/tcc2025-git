@@ -1,0 +1,382 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+body {
+  background-color: #FCF8F3;
+}
+
+#home {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 5em;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  height: 500vh;
+}
+
+#main-header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  padding: 3em 1em;
+  background-color: transparent;
+  z-index: 1000;
+}
+
+#main-header.scrolled {
+  background-color: #fff;
+  height: 3em;
+}
+
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1em 1em;
+  margin-top: -3em;
+}
+
+.toggle-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0.1em;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 3.8em;
+  height: 4em;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slidel-toggle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  border-radius: 2em;
+  transition: 0.4s;
+  margin-top: 1em;
+  height: 2em;
+}
+
+.circle {
+  position: absolute;
+  top: 0.2em;
+  left: 0.2em;
+  height: 1.6em;
+  width: 1.6em;
+  background-color: white;
+  border-radius: 50%;
+  transition: transform 0.4s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1em;
+}
+
+input:checked+.slidel-toggle .circle {
+  transform: translateX(1.6em);
+}
+
+.userlogin {
+  padding: 0 4em 0 17em;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8.5em;
+
+}
+
+.flex a {
+  color: #000;
+  font-size: 1.4em;
+  font-family: "Poppins", sans-serif;
+}
+
+.flex a:hover {
+  color: #faa938;
+}
+
+.menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.6em;
+}
+
+header {
+  width: 100%;
+  padding: 6em 4;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+header ul {
+  list-style-type: none;
+}
+
+header ul li {
+  display: inline-block;
+  margin: 0 2.5em;
+  color: #582704;
+}
+
+header ul li a {
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.logo {
+  height: 3.5em;
+  display: flex;
+  align-items: center;
+  gap: 2em
+}
+
+.coracao {
+  color: #faa938;
+}
+
+
+.container-card {
+  width: 16em;
+  height: 18em;
+  border-radius: 2em;
+  background-color: #fbc273;
+  box-shadow: 2em 2em 2em 2em rgba(197, 193, 193, 0.1);
+  align-items: center;
+  justify-content: center;
+  padding: 0.9em;
+}
+
+
+.img-card {
+  justify-content: center;
+  align-items: center;
+  width: 14em;
+  height: 10em;
+  border-radius: 1em;
+}
+
+.titulo {
+  color: #000;
+  font-size: 1.4em;
+  justify-content: center;
+  align-items: center;
+}
+
+.titulo:hover {
+  cursor: pointer;
+  color: #202020;
+}
+
+.slider {
+  width: 90em;
+  height: 40em;
+  overflow: hidden;
+  position: relative;
+  margin-top: 9em;
+  display: block;
+  margin: 0 auto;
+}
+
+.slides {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+  min-width: 100%;
+  height: 36em;
+  object-fit: cover;
+  flex-shrink: 0;
+  border-radius: 2em;
+}
+
+#receitas {
+  height: 2em;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+a {
+  text-decoration: none !important;
+  color: inherit !important;
+  display: block;
+}
+
+.acessados {
+  color: #000;
+  font-size: 3em;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.mini {
+  justify-content: center;
+  font-size: 1.2em;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  justify-content: center;
+  padding: 1.3em 2em 3em 2em;
+}
+
+.quadrados {
+  box-sizing: border-box;
+  width: 18em;
+  height: 19em;
+  background-color: #fbc273;
+  border-radius: 1.6em;
+  padding: 1em;
+  flex-direction: column;
+  align-items: center;
+  margin: 1.5em;
+  display: flex;
+  text-decoration: none;
+}
+
+.img1 {
+  max-width: 100%;
+  height: auto;
+  border-radius: 1em;
+  margin-bottom: 1em;
+}
+
+.escrita {
+  text-decoration: none;
+  color: #363636;
+  font-size: 1.5em;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  text-align: center;
+  margin: 0;
+  padding-bottom: 1em;
+}
+
+.info {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  font-size: 1em;
+  margin-top: 0.1em;
+  margin-right: 6em;
+}
+
+.categorias {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 450;
+  margin-top: 20em;
+  font-size: 2.5em;
+  font-family: "Montserrat", sans-serif;
+  justify-content: center;
+}
+
+
+.card-list .card-item {
+  list-style: none;
+}
+
+.card-list .card-item .card-link {
+  display: block;
+  width: 16em;
+  border: 0.1em solid #d8d8d8;
+  border-radius: 1.2em;
+  height: 17em;
+  padding: 1em;
+  box-shadow: 0 0.1em 0.4em rgba(179, 179, 179, 0.5);
+  margin-top: 7em;
+
+}
+
+.card-list .card-link .card-image {
+  width: 100%;
+
+}
+
+.card-list .card-link .card-titulo {
+  color: #363636;
+  font-size: 1.4em;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+}
+
+.loginuser {
+  gap: 2em;
+  width: 2em;
+  height: 1.8em;
+}
+
+
+.hallo {
+  padding: 3em 0 0 2em;
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  color: #71350B;
+  margin-top: 1em;
+  font-size: 1.3em;
+}
+
+
+.cards-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1em;
+  padding: 2em;
+  background-color: #fffaf5;
+}
+
+.card {
+  text-align: center;
+  width: 14em;
+  padding: 1em;
+  border-radius: 1.25em;
+  background-color: #fff;
+  text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card img {
+  width: 11.5em;
+  height: 11.5em;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.card p {
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  color: #faa938;
+  margin-top: 1em;
+  text-transform: lowercase;
+  font-size: 1em;
+}
+
+.card:hover {
+  transform: translateY(-0.3em);
+  box-shadow: 0 0.5em 1em rgba(0, 0, 0, 0.15);
+}
