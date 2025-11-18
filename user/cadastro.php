@@ -63,7 +63,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 }
-     */
 ?>
 
 <!DOCTYPE html>
@@ -91,6 +90,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <form class="formulario" method="POST" action="cadastro.php">
         
             <input class="inputLogin" type="text" name="nomeUsuario" placeholder="Nome Completo" required autocomplete="off">
+
+            <input class="inputLogin" type="date" name="dataNasc" required autocomplete="off">
             
             <input class="inputLogin" type="text" name="cpf" maxlength="14" placeholder="CPF" required autocomplete="off">
 
@@ -99,8 +100,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <input class="inputLogin" type="text" name="contato" placeholder="Telefone" maxlength="11" required autocomplete="off">
 
             <input class="inputLogin" type="password" id="senha" name="senha" placeholder="Senha" required autocomplete="off">
-
-            <input class="inputLogin" type="date" name="dataNasc" required>
 
 
                     <div class="EsqueciS">
@@ -122,20 +121,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <img src="../user/userImg/cadastro.png" class="img-cadastro">
     </section>
 </div>
-
-    <script>
-document.addEventListener("DOMContentLoaded", () => {
-    const formulario = document.querySelector(".formulario");
-    const aceitarTermos = document.getElementById("aceitarTermos");
-
-    formulario.addEventListener("submit", (e) => {
-        if (!aceitarTermos.checked) {
-            e.preventDefault();
-            alert("Você precisa aceitar os Termos de Uso para continuar.");
-        }
-    });
-});
-</script>
 
 </body>
 </html>
