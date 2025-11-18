@@ -28,9 +28,9 @@
         
 
                     <div class="EsqueciS">
-                        <input type="checkbox" id="mostrarSenha">
+                        <input type="checkbox" id="aceitarTermos">
                         
-                        <label for="mostrarSenha" id="labelSenha">Li e aceito o <a href="termos.php">Termo de Uso</a></label> 
+                        <label for="aceitarTermos" id="labelSenha">Li e aceito o <a href="../user/termos.php">Termo de Uso</a></label> 
                         <a class="senha" href="#">Esqueci senha</a>
                     </div>
             <button class="btn">Cadastrar</button>
@@ -46,6 +46,19 @@
     </section>
 </div>
 
+    <script>
+document.addEventListener("DOMContentLoaded", () => {
+    const formulario = document.querySelector(".formulario");
+    const aceitarTermos = document.getElementById("aceitarTermos");
+
+    formulario.addEventListener("submit", (e) => {
+        if (!aceitarTermos.checked) {
+            e.preventDefault();
+            alert("Você precisa aceitar os Termos de Uso para continuar.");
+        }
+    });
+});
+</script>
 
 </body>
 </html>

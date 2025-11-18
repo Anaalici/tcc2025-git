@@ -97,11 +97,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (checkbox.checked) {
             // Se marcado: MOSTRAR SENHA
             senhaInput.type = 'text'; 
-            label.textContent = 'Esconder Senha 🙈'; 
+            label.textContent = 'Esconder Senha'; 
         } else {
             // Se desmarcado: ESCONDER SENHA
             senhaInput.type = 'password'; 
-            label.textContent = 'Mostrar Senha 👁️'; 
+            label.textContent = 'Mostrar Senha '; 
         }
     }
 </script>
