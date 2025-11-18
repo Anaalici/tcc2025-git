@@ -63,6 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 }
+     */
 ?>
 
 <!DOCTYPE html>
@@ -89,25 +90,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="inputs">
         <form class="formulario" method="POST" action="cadastro.php">
         
-            <input type="text" name="nomeUsuario" required autocomplete="off">
-
-            <input type="date" name="dataNasc" required>
+            <input class="inputLogin" type="text" name="nomeUsuario" placeholder="Nome Completo" required autocomplete="off">
             
-            <input type="text" name="cpf" maxlength="14" required autocomplete="off">
+            <input class="inputLogin" type="text" name="cpf" maxlength="14" placeholder="CPF" required autocomplete="off">
 
-            <input type="email" name="email" required autocomplete="off">
+            <input class="inputLogin" type="email" name="email" placeholder="E-mail" required autocomplete="off">
 
-            <input type="text" name="contato" maxlength="11" required autocomplete="off">
+            <input class="inputLogin" type="text" name="contato" placeholder="Telefone" maxlength="11" required autocomplete="off">
 
-            <input type="password" id="senha" name="senha" required autocomplete="off">
-        
+            <input class="inputLogin" type="password" id="senha" name="senha" placeholder="Senha" required autocomplete="off">
+
+            <input class="inputLogin" type="date" name="dataNasc" required>
+
 
                     <div class="EsqueciS">
-                        <input type="checkbox" id="mostrarSenha" onclick="togglePasswordVisibilityCheckbox()">
-                        <label for="mostrarSenha" id="labelSenha">Mostrar Senha 👁️</label> 
+                        <input type="checkbox" id="mostrarSenha">
                         
-                        <input type="checkbox" id="aceitaTermos">
-                        <label for="aceitaTermos" id="labelSenha">Li e aceito o <a href="termos.php">Termo de Uso</a></label> 
+                        <label for="mostrarSenha" id="labelSenha">Li e aceito o <a href="termos.php">Termo de Uso</a></label> 
                         <a class="senha" href="#">Esqueci senha</a>
                     </div>
 
@@ -124,6 +123,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </section>
 </div>
 
+    <script>
+document.addEventListener("DOMContentLoaded", () => {
+    const formulario = document.querySelector(".formulario");
+    const aceitarTermos = document.getElementById("aceitarTermos");
+
+    formulario.addEventListener("submit", (e) => {
+        if (!aceitarTermos.checked) {
+            e.preventDefault();
+            alert("Você precisa aceitar os Termos de Uso para continuar.");
+        }
+    });
+});
+</script>
 
 </body>
 </html>
