@@ -1,6 +1,8 @@
 <?php
 include '../conexao.php';
 
+$mensagem = ""; 
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     $nome = trim($_POST['nomeUsuario'] ?? '');
@@ -46,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     if ($stmt_insert->execute()) {
                         $mensagem = "USUÁRIO CADASTRADO COM SUCESSO! Redirecionando...";
                         
-                        header("refresh:3; url=index.html");
+                        header("refresh:3; url=../index.html");
                         exit();
                         
                     } else {
@@ -61,7 +63,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 }
-     
 ?>
 
 <!DOCTYPE html>
@@ -70,6 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../user/user.css">
+    <script src="mostrarS.js" defer></script>
     <title>Cadastro - Receitas de Mestre</title>
 </head>
 <body>
@@ -86,8 +88,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <div class="inputs">
         <form class="formulario" method="POST" action="cadastro.php">
+
+            <input type="text" name="fakeuser" autocomplete="username" style="display:none">
+            <input type="password" name="fakepass" autocomplete="new-password" style="display:none">
         
-            <input class="inputLogin" type="text" name="nomeUsuario" placeholder="Nome Completo" required autocomplete="off">
+            <input class="inputLogin" type="text" name="nomeUsuario" placeholder="Username" required autocomplete="off">
+
+            <input class="inputLogin" type="date" name="dataNasc" required autocomplete="off">
             
             <input class="inputLogin" type="text" name="cpf" maxlength="14" placeholder="CPF" required autocomplete="off">
 
@@ -97,13 +104,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <input class="inputLogin" type="password" id="senha" name="senha" placeholder="Senha" required autocomplete="off">
 
-            <input class="inputLogin" type="date" name="dataNasc" required>
-
 
                     <div class="EsqueciS">
-                        <input type="checkbox" id="aceitarTermos">
+                        <input type="checkbox" id="mostrarSenha" onclick="togglePasswordVisibilityCheckbox()">
+                        <label for="mostrarSenha" id="labelSenha">Mostrar Senha 👁️</label> 
                         
-                        <label for="aceitarTermos" id="labelSenha">Li e aceito o <a href="../user/termos.php">Termo de Uso</a></label> 
+                        <input type="checkbox" id="termos">
+                        <label for="termos" id="labelSenha">Li e aceito o <a href="termos.php">Termo de Uso</a></label> 
                         <a class="senha" href="#">Esqueci senha</a>
                     </div>
 
@@ -119,20 +126,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <img src="../user/userImg/cadastro.png" class="img-cadastro">
     </section>
 </div>
-
-    <script>
-document.addEventListener("DOMContentLoaded", () => {
-    const formulario = document.querySelector(".formulario");
-    const aceitarTermos = document.getElementById("aceitarTermos");
-
-    formulario.addEventListener("submit", (e) => {
-        if (!aceitarTermos.checked) {
-            e.preventDefault();
-            alert("Você precisa aceitar os Termos de Uso para continuar.");
-        }
-    });
-});
-</script>
 
 </body>
 </html>

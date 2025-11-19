@@ -1,49 +1,50 @@
 <?php
-include 'conexao.php';
+session_start();
+include '../conexao.php';
 
-$mensagem = ""; 
+$mensagem = "";
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    
-    $user_input = trim($_POST['nome'] ?? '');
-    $senha_digitada = $_POST['Senha'] ?? '';
-    
-    $sql = "SELECT idUsuario, nomeUsuario, senha FROM usuario WHERE nomeUsuario = ? OR email = ?";
-    
-    $stmt = $conexao->prepare($sql);
-    
-    if ($stmt === false) {
-        $mensagem = "Erro na preparação da consulta: " . $conexao->error;
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+
+    $email = trim($_POST['email'] ?? '');
+    $senha = $_POST['senha'] ?? '';
+
+    if (empty($email) || empty($senha)) {
+        $mensagem = "Preencha email e senha.";
     } else {
-        $stmt->bind_param("ss", $user_input, $user_input);
-        
-        $stmt->execute();
-        
-        $result = $stmt->get_result();
-        
-        if ($result->num_rows == 1) {
-            $usuario = $result->fetch_assoc();
-            $senha_hash_armazenada = $usuario['senha'];
-            
-            if (password_verify($senha_digitada, $senha_hash_armazenada)) {
-                
-                $_SESSION['logado'] = TRUE;
-                $_SESSION['idUsuario'] = $usuario['idUsuario'];
-                $_SESSION['nomeUsuario'] = $usuario['nomeUsuario'];
-                
-                $mensagem = "Login efetuado com sucesso! Redirecionando...";
-                
-                header("refresh:2; url=index.html");
-                exit();
-                
-            } else {
-                $mensagem = "ERRO: Usuário ou senha incorretos.";
-            }
+
+        $sql = "SELECT idUsuario, senha FROM usuario WHERE email = ?";
+        $stmt = $conexao->prepare($sql);
+
+        if (!$stmt) {
+            $mensagem = "Erro de consulta: " . $conexao->error;
         } else {
-            $mensagem = "ERRO: Usuário ou senha incorretos.";
+            $stmt->bind_param("s", $email);
+            $stmt->execute();
+            $resultado = $stmt->get_result();
+
+            if ($resultado->num_rows === 1) {
+
+                $usuario = $resultado->fetch_assoc();
+                $senha_hash_bd = $usuario['senha'];
+
+                if (password_verify($senha, $senha_hash_bd)) {
+
+                    $_SESSION['idUsuario'] = $usuario['idUsuario'];
+
+                    header("Location: ../index.html");
+                    exit();
+
+                } else {
+                    $mensagem = "Email ou senha incorretos.";
+                }
+
+            } else {
+                $mensagem = "Email ou senha incorretos.";
+            }
+
+            $stmt->close();
         }
-        
-        $stmt->close();
     }
 }
 ?>
@@ -54,7 +55,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../user/user.css">
-    <title>Login - Rceitas de Mestre</title>
+    <script src="mostrarS.js" defer></script>
+    <title>Login - Receitas de Mestre</title>
 </head>
 <body>
 
@@ -69,10 +71,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
 
             <div class="inputs">
-                <form method="POST" action="login.php"> 
-                    <input class="inputLogin" type="text" name="nome" placeholder="User" required>
+                <form method="POST" action="./login.php" autocomplete="off">
+
+                <input type="text" name="fakeuser" autocomplete="username" style="display:none">
+                <input type="password" name="fakepass" autocomplete="new-password" style="display:none">
                     
-                    <input class="inputLogin" type="password" id="senha" name="Senha" placeholder="Senha" required>
+                    <input class="inputLogin" type="email" name="email" placeholder="Email" required autocomplete="off">
+                    
+                    <input class="inputLogin" type="password" id="senha" name="senha" placeholder="Senha" required autocomplete="off">
 
                     <div class="EsqueciS">
                         <input type="checkbox" id="mostrarSenha" onclick="togglePasswordVisibilityCheckbox()">
@@ -84,27 +90,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <input class="button" type="submit" value="Enviar">
                     <p class="cadastro-conta">Não tem uma conta? <a href="../user/cadastro.php" class="cadastro">Cadastrar-se</a></p> 
                 </form>
+
             </div>
 </div>
-
-<script>
-    function togglePasswordVisibilityCheckbox() {
-        // Busca os elementos pelo ID (é crucial que esses IDs estejam no seu HTML)
-        const senhaInput = document.getElementById('senha');
-        const checkbox = document.getElementById('mostrarSenha');
-        const label = document.getElementById('labelSenha');
-
-        if (checkbox.checked) {
-            // Se marcado: MOSTRAR SENHA
-            senhaInput.type = 'text'; 
-            label.textContent = 'Esconder Senha'; 
-        } else {
-            // Se desmarcado: ESCONDER SENHA
-            senhaInput.type = 'password'; 
-            label.textContent = 'Mostrar Senha '; 
-        }
-    }
-</script>
 
 </body>
 </html>

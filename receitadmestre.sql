@@ -114,7 +114,7 @@ CREATE TABLE `usuario` (
   `cpf` char(14) NOT NULL,
   `email` varchar(100) NOT NULL,
   `contato` char(11) NOT NULL,
-  `senha` varchar(50) NOT NULL,
+  `senha` varchar(255) NOT NULL,
   `dataCadastro` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
