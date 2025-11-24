@@ -1,56 +1,87 @@
 <?php
-require_once 'conexao.php'; 
+require 'vendor/autoload.php';
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+include 'conexao.php';
 
 $email_destino = "receitadmestre@gmail.com";
 
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    $nome    = strip_tags(trim($_POST["nome"]));
-    $email   = filter_var(trim($_POST["email"]), FILTER_SANITIZE_EMAIL);
-    $assunto = strip_tags(trim($_POST["assunto"]));
-    $mensagem = trim($_POST["mensagem"]);
-    
+    $nome       = strip_tags(trim($_POST["nome"]));
+    $email      = filter_var(trim($_POST["email"]), FILTER_SANITIZE_EMAIL);
+    $assunto    = strip_tags(trim($_POST["assunto"]));
+    $mensagem   = trim($_POST["mensagem"]);
     $id_usuario = NULL; 
 
     if (empty($nome) OR empty($assunto) OR empty($mensagem) OR !filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        header("Location: contato.html?status=erro_campos");
+        header("Location: contato.php?status=erro_campos");
         exit;
     }
     
-    
-    $stmt = $conn->prepare("INSERT INTO contato (nome, email, assunto, mensagem, idUsuario) VALUES (?, ?, ?, ?, ?)");
-    
-    $stmt->bind_param("ssssi", $nome, $email, $assunto, $mensagem, $id_usuario);
-    $insercao_sucesso = $stmt->execute();
-    $stmt->close();
-    
-
-    $cabecalhos = "De: {$nome} <{$email}> \r\n";
-    $cabecalhos .= "Reply-To: {$email} \r\n";
-    $cabecalhos .= "Content-Type: text/plain; charset=UTF-8";
-
-    $corpo_email = "Você recebeu uma nova mensagem de contato do seu site (Também salva no DB).\n\n";
-    $corpo_email .= "Nome: {$nome}\n";
-    $corpo_email .= "Email: {$email}\n";
-    $corpo_email .= "Assunto: {$assunto}\n\n";
-    $corpo_email .= "Mensagem:\n{$mensagem}\n";
-
-    $envio_sucesso = mail($email_destino, "CONTATO - {$assunto}", $corpo_email, $cabecalhos);
-
-    if ($insercao_sucesso && $envio_sucesso) {
-        header("Location: contato.html?status=sucesso");
-    } else {
-        header("Location: contato.html?status=erro_envio"); 
+    $insercao_sucesso = false;
+    try {
+        $stmt = $conexao->prepare("INSERT INTO contato (nome, email, assunto, mensagem, idUsuario) VALUES (?, ?, ?, ?, ?)");
+        $stmt->bind_param("ssssi", $nome, $email, $assunto, $mensagem, $id_usuario);
+        $insercao_sucesso = $stmt->execute();
+        $stmt->close();
+    } catch (Exception $e) {
+        $insercao_sucesso = false;
     }
     
-    $conn->close();
-    exit;
+    
+    $envio_sucesso = false;
+    $email_autenticacao = 'gabrihel.camargo1234@gmail.com'; 
+    $senha_app          = 'bwonsplblguffszz';   
 
-} else {
-    header("Location: contato.html");
+    $mail = new PHPMailer(true);
+
+    try {
+        $mail->isSMTP(); 
+        $mail->Host       = 'smtp.gmail.com'; 
+        $mail->SMTPAuth   = true;
+        $mail->Username   = $email_autenticacao;
+        $mail->Password   = $senha_app;    
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; 
+        $mail->Port       = 587; 
+        $mail->CharSet    = 'UTF-8'; 
+
+        $mail->setFrom($email_autenticacao, 'Contato do Seu Site'); 
+        
+        $mail->addReplyTo($email, $nome); 
+
+        $mail->addAddress($email_destino);
+        
+        $mail->isHTML(false); 
+        $mail->Subject = "CONTATO - {$assunto}";
+        
+        $corpo_email = "Você recebeu uma nova mensagem de contato do seu site.\n\n";
+        $corpo_email .= "Nome: {$nome}\n";
+        $corpo_email .= "Email: {$email}\n";
+        $corpo_email .= "Assunto: {$assunto}\n\n";
+        $corpo_email .= "Mensagem:\n{$mensagem}\n";
+
+        $mail->Body = $corpo_email;
+
+        $mail->send();
+        $envio_sucesso = true;
+
+    } catch (Exception $e) {
+        $envio_sucesso = false;
+    }
+    
+    if ($insercao_sucesso && $envio_sucesso) {
+        header("Location: contato.php?status=sucesso"); 
+    } else {
+        header("Location: contato.php?status=erro_envio"); 
+    }
+    
+    $conexao->close();
     exit;
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -112,7 +143,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <section class="contato-container">
         <h2 class="titulo-contato">Fale diretamente com nossos chefs especialistas, sempre prontos para ajudar você a cozinhar com mais praticidade e sabor.</h2>
-                <form class="form-contato" action="enviar_email.php" method="POST">
+                <form class="form-contato" action="contato.php" method="POST">
             <label for="nome">Nome</label>
                         <input type="text" id="nome" name="nome" placeholder="Digite seu nome" required>
 
@@ -136,6 +167,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </form>
     </section>
 
+    <script>
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        const status = getQueryParam('status');
+
+        if (status === 'sucesso') {
+            alert('✅ Mensagem enviada com sucesso! Logo entraremos em contato.');
+            window.history.replaceState(null, null, window.location.pathname);
+        } else if (status === 'erro_envio') {
+            alert('❌ Ops! Não foi possível enviar sua mensagem. Verifique a conexão ou tente novamente mais tarde.');
+            window.history.replaceState(null, null, window.location.pathname);
+        } else if (status === 'erro_campos') {
+            alert('⚠️ Por favor, preencha todos os campos obrigatórios corretamente.');
+            window.history.replaceState(null, null, window.location.pathname);
+        }
+    </script>
 
     <script src="script.js" defer></script>
 

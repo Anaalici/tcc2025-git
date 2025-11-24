@@ -280,3 +280,30 @@ form {
     position: relative;
     z-index: 10;
 }
+
+.input-group {
+    position: relative;
+    width: 100%; 
+    margin-bottom: 20px; /* Espaçamento padrão para todos os inputs */
+}
+
+/* 2. Garante que o input preencha o grupo e tenha padding suficiente para o ícone */
+.input-group .inputLogin {
+    width: 100%; 
+    /* Ajustado: Aumentar o padding se o ícone estiver muito colado */
+    padding-right: 45px !important; 
+    box-sizing: border-box; 
+}
+
+/* 3. Estiliza e posiciona o ícone do olho */
+.toggle-password {
+    position: absolute;
+    top: 50%; 
+    /* AJUSTE AQUI: Puxa o ícone mais para a direita (menos pixels de distância da borda) */
+    right: 8px; 
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: orange; 
+    font-size: 1.2em;
+    user-select: none;
+}

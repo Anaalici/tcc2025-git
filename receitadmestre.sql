@@ -245,6 +245,9 @@ ALTER TABLE `contato`
 ALTER TABLE `receita`
   ADD CONSTRAINT `receita_ibfk_1` FOREIGN KEY (`idCategoriaRec`) REFERENCES `categoriareceita` (`idCategoriaRec`);
 
+ALTER TABLE `usuario`
+ADD COLUMN `tokenRedefinicao` VARCHAR(255) NULL AFTER `senha`,
+ADD COLUMN `expiracaoToken` DATETIME NULL AFTER `tokenRedefinicao`;
 --
 -- Restrições para tabelas `tempero`
 --

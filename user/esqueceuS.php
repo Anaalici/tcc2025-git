@@ -129,11 +129,10 @@
     <p>Informe o e-mail cadastrado e enviaremos um link para você redefinir sua senha.</p>
 
     <form action="enviar_redefinicao.php" method="POST">
-        <div class="input-group">
-            <input type="email" name="email" placeholder="Digite seu e-mail" required>
-            <i class="fas fa-envelope"></i>
+    <div class="input-group">
+        <input type="email" name="email" placeholder="Digite seu e-mail" required>
         </div>
-        <button type="submit">Enviar Link</button>
+    <button type="submit">Enviar Link</button>
     </form>
 
     <a class="link" href="../user/login.php">Voltar para o login</a>

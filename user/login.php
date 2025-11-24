@@ -31,9 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 if (password_verify($senha, $senha_hash_bd)) {
 
                     $_SESSION['idUsuario'] = $usuario['idUsuario'];
-
                     
-
                     header("Location: ../index.html");
                     exit();
 
@@ -57,7 +55,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../user/user.css">
-    <script src="mostrarS.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
+    <script src="mascaras.js" defer></script> 
+    
     <title>Login - Receitas de Mestre</title>
 </head>
 <body>
@@ -66,34 +67,41 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <img class="imgSign" src="../user/userImg/user1.png" alt="">
     <div class="contanerBranco">
         <h2 class="h2">Sign in</h2>
-            <div class="icons-container">
-                <img class="icons" src="../user/userImg/facebook.png" alt="">
-                <img class="icons" src="../user/userImg/google.png" alt="">
-                <img class="icons" src="../user/userImg/linkedin.png" alt="">
-            </div>
+        
+        <?php if (!empty($mensagem)): ?>
+            <p style="color: red; font-weight: bold; padding: 10px; border: 1px solid red; background-color: #ffe0e0;"><?= $mensagem ?></p>
+        <?php endif; ?>
+        
+        <div class="icons-container">
+            <img class="icons" src="../user/userImg/facebook.png" alt="Facebook">
+            <img class="icons" src="../user/userImg/google.png" alt="Google">
+            <img class="icons" src="../user/userImg/linkedin.png" alt="LinkedIn">
+        </div>
 
-            <div class="inputs">
-                <form method="POST" action="./login.php" autocomplete="off">
+        <div class="inputs">
+            <form method="POST" action="./login.php" autocomplete="off">
 
                 <input type="text" name="fakeuser" autocomplete="username" style="display:none">
                 <input type="password" name="fakepass" autocomplete="new-password" style="display:none">
                     
+                <div class="input-group">
                     <input class="inputLogin" type="email" name="email" placeholder="Email" required autocomplete="off">
-                    
+                </div>
+                
+                <div class="input-group">
                     <input class="inputLogin" type="password" id="senha" name="senha" placeholder="Senha" required autocomplete="off">
-
-                    <div class="EsqueciS">
-                        <input type="checkbox" id="mostrarSenha" onclick="togglePasswordVisibilityCheckbox()">
-                        
-                        <label for="mostrarSenha" id="labelSenha">Mostrar Senha 👁️</label> 
-                        <a class="senha" href="../user/esqueceuS.html">Esqueci senha</a>
-                    </div>
+                    <span toggle="#senha" class="fas fa-eye toggle-password" onclick="mostrarOcultarSenha(this)"></span>
+                </div>
+                <div class="EsqueciS">
+                    <a class="senha" href="../user/esqueceuS.php">Esqueci senha</a>
+                </div>
         
-                    <input class="button" type="submit" value="Enviar">
-                    <p class="cadastro-conta">Não tem uma conta? <a href="../user/cadastro.php" class="cadastro">Cadastrar-se</a></p> 
-                </form>
+                <input class="button" type="submit" value="Enviar">
+                <p class="cadastro-conta">Não tem uma conta? <a href="../user/cadastro.php" class="cadastro">Cadastrar-se</a></p> 
+            </form>
 
-            </div>
+        </div>
+    </div>
 </div>
 
 </body>
