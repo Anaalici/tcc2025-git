@@ -67,8 +67,12 @@ CREATE TABLE `categoriatempero` (
 
 CREATE TABLE `contato` (
   `idContato` int(11) NOT NULL,
-  `idUsuario` int(11) NOT NULL,
-  `comentario` varchar(255) NOT NULL
+  `nome` varchar(100) NOT NULL,            
+  `email` varchar(100) NOT NULL,           
+  `assunto` varchar(100) NOT NULL,         
+  `mensagem` text NOT NULL,                
+  `idUsuario` int(11) DEFAULT NULL,        
+  `data_envio` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
