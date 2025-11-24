@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="style2.css">
-    <link rel="icon" href="/img/favicon.png" type="image/png">
+    <link rel="icon" href="img/favicon.png" type="image/png">
 </head>
 
 <body>
@@ -21,7 +21,7 @@
                     <nav>
                         <ul class="menu">
                             <li><a href="#home">Home</a></li>
-                            <li><a href="#receitas">Receitas</a></li>
+                            <li><a href="receitas.html">Receitas</a></li>
                             <li><a href="contato.html">Contato</a></li>
                             <li><a href="#favoritos">Favoritad<span class="coracao"><i
                                             class="fas fa-heart"></i></span>s</a></li>
@@ -44,8 +44,16 @@
                                 <input type="text" id="searchInput" placeholder="Pesquisar">
                             </div>-->
 
-                            <div class="userlogin">
-                                <a href="login.php"><img class="loginuser" src="./img/user.png" alt=""></a>
+                            <div class="userlogin" id="btnLogin">
+                                <a href="./user/login.php">
+                                    <img class="loginuser" src="./img/user.png" alt=""></a>
+                            </div>
+
+                            <div class="userperfil" id="btnPerfil" style="display: none;">
+                                <a href="./user/perfil.php">
+                                    <img class="loginuser" src="./img/entrar.png" alt="">
+                                </a>
+
                             </div>
 
 
@@ -69,36 +77,36 @@
     </section>
 
     <section id="tematico">
-        <h2 class="hallo">Receitas para o Halloween</h2>
+        <h2 class="hallo">Receitas para o Natal</h2>
         <div class="cards-container">
             <a href="biscoito.html" class="card">
-                <img src="imgHalloween/biscoito.jpg" alt="biscoito">
-                <p>biscoito amanteigado de fantasma</p>
+                <img src="img/chester.jpg" alt="biscoito">
+                <p>Chester assado</p>
             </a>
 
             <a href="almoco-rapido.html" class="card">
-                <img src="imgHalloween/hotdog.jpg" alt="Receitas para almoço rápido">
-                <p>cachorro-quente de dedo</p>
+                <img src="img/biscoitoN.jpg" alt="Receitas para almoço rápido">
+                <p>Biscoito de gengibre</p>
             </a>
 
-            <a href="sobremesas.html" class="card">
-                <img src="imgHalloween/bolo.jpg" alt="Receitas de sobremesas fáceis">
-                <p>bolo de cérebro</p>
+            <a href="chocotone.html" class="card">
+                <img src="img/chocotonr.jpg" alt="Receitas de sobremesas fáceis">
+                <p>Chocotone</p>
             </a>
 
             <a href="fit.html" class="card">
-                <img src="imgHalloween/mumia.jpg" alt="Receitas fit e saudáveis">
-                <p>Múmia de salsicha</p>
-            </a>
-
-            <a href="jantar.html" class="card">
-                <img src="imgHalloween/vassouramorango.avif" alt="Receitas de jantar simples">
-                <p>vassoura de bruxa de morango e chocolate</p>
+                <img src="img/download.jpg" alt="Receitas fit e saudáveis">
+                <p>Salpicão</p>
             </a>
 
             <a href="almoco-domingo.html" class="card">
-                <img src="imgHalloween/tortamaca.jpg" alt="Receitas para almoço de domingo">
-                <p>Torta de maçã</p>
+                <img src="img/manjarC.png" alt="Receitas para almoço de domingo">
+                <p>Manjar de coco</p>
+            </a>
+
+                        <a href="almoco-domingo.html" class="card">
+                <img src="img/fricasse.jpg" alt="Receitas para almoço de domingo">
+                <p>Fricassê</p>
             </a>
         </div>
 
@@ -116,9 +124,9 @@
     </section>
 
     <center>
-        <section id="receitas">
+        <section id="categoria">
             <div class="receitas">
-                <a href="sobremesas.html" class="card1">
+                <a href="comidasC.html" class="card1">
                     <img src="imgCategorias/japonesa.webp" alt="japones">
                 </a>
                 <a href="fit.html" class="card1">
@@ -132,7 +140,6 @@
                 </a>
             </div>
         </section>
-
 
         <section id="carrossel">
             <h2 class="vistasR">Queridinhas da semana</h2>

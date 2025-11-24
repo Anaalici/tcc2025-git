@@ -110,9 +110,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <label for="mostrarSenha" id="labelSenha">Mostrar Senha 👁️</label> 
                         
                         <input type="checkbox" id="termos">
-                        <label for="termos" id="labelSenha">Li e aceito o <a href="termos.php">Termo de Uso</a></label> 
-                        <a class="senha" href="#">Esqueci senha</a>
-                    </div>
+                        <label for="termos" id="labelSenha">Li e aceito o <a href="termos.php">Termo de Uso</a></label>                     </div>
 
             <input class="btn" type="submit" name="cadastrar" value="Cadastrar">
 

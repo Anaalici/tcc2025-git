@@ -32,6 +32,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
                     $_SESSION['idUsuario'] = $usuario['idUsuario'];
 
+                    
+
                     header("Location: ../index.html");
                     exit();
 
@@ -84,7 +86,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         <input type="checkbox" id="mostrarSenha" onclick="togglePasswordVisibilityCheckbox()">
                         
                         <label for="mostrarSenha" id="labelSenha">Mostrar Senha 👁️</label> 
-                        <a class="senha" href="#">Esqueci senha</a>
+                        <a class="senha" href="../user/esqueceuS.html">Esqueci senha</a>
                     </div>
         
                     <input class="button" type="submit" value="Enviar">

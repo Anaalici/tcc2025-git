@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Receitas Japonesas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: #f9f5f0;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            color: #ff7043;
+            margin-bottom: 40px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .card img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 15px;
+        }
+
+        .card-content h3 {
+            margin: 0;
+            font-size: 1.1rem;
+            color: #ff7043;
+        }
+
+        .card-content p {
+            font-size: 0.9rem;
+            color: #555;
+            margin-top: 5px;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 10px 15px;
+            background: #ff7043;
+            color: #fff;
+            border-radius: 8px;
+            text-decoration: none;
+        }
+
+        .back-btn:hover {
+            background: #ff5722;
+        }
+    </style>
+</head>
+
+<body>
+
+    <a href="index.html" class="back-btn">← Voltar para Categorias</a>
+    <h1>Receitas Japonesas</h1>
+    <div class="grid" id="listaReceitas"></div>
+
+    <script>
+        // Array de receitas (exemplo com 3, repita até 20)
+        const receitas = [
+            { nome: 'Sushi de Salmão', dificuldade: 'Fácil', tempo: '30 min', link: 'receitas/sushi.html', imagem: '../imgCategorias/Sushi.jpg' },
+            { nome: 'Ramen Tonkotsu', dificuldade: 'Médio', tempo: '60 min', link: 'receitas/ramen.html', imagem: 'imagens/ramen.jpg' },
+            { nome: 'Gyoza', dificuldade: 'Médio', tempo: '40 min', link: 'receitas/gyoza.html', imagem: 'imagens/gyoza.jpg' }
+            // Repita para chegar a 20 receitas
+        ];
+
+        const container = document.getElementById('listaReceitas');
+        receitas.forEach(r => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.innerHTML = `
+        <a href="${r.link}">
+            <img src="${r.imagem}" alt="${r.nome}">
+            <div class="card-content">
+                <h3>${r.nome}</h3>
+                <p>${r.dificuldade} • ${r.tempo}</p>
+            </div>
+        </a>
+    `;
+            container.appendChild(card);
+        });
+    </script>
+
+</body>
+
+</html>

@@ -380,3 +380,19 @@ a {
   transform: translateY(-0.3em);
   box-shadow: 0 0.5em 1em rgba(0, 0, 0, 0.15);
 }
+
+/**/
+.footer {
+  background-color: #FFD9A6; /* laranja claro */
+  padding: 2em 1em;
+  margin-top: 3em;
+  text-align: center;
+  color: #5a3b1e; /* marrom suave */
+  font-family: Arial, sans-serif;
+}
+
+.footer-title {
+  margin: 0;
+  font-size: 1.6em;
+  font-weight: bold;
+}

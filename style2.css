@@ -15,9 +15,7 @@ body {
     box-sizing: border-box;
 }
 
-html {
-    height: 500vh;
-}
+html {}
 
 #main-header {
     position: fixed;
@@ -106,14 +104,14 @@ html {
     justify-content: center;
     background-color: #000;
     height: 23em;
-    width: 90em;
+    width: 9 0em;
     border-radius: 1em;
     margin: 0 auto;
     flex-wrap: wrap;
     gap: 1em;
     padding: 2em;
     background-color: #FCF8F3;
-    margin-bottom: 30em;
+    margin-bottom: 5em;
 }
 
 .card1 {
@@ -196,7 +194,6 @@ html {
 }
 
 .vistasR {
-    margin-top: 20em;
     font-family: Arial, sans-serif;
     font-size: 1.3em;
     color: #5c2c09;
@@ -277,10 +274,10 @@ html {
 .contato-container {
     position: fixed;
     overflow: hidden;
-      top: 0;
+    top: 0;
     left: 0;
     width: 100vw;
-    height: 100vh;  
+    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -333,7 +330,7 @@ html {
     padding: 0.75em;
     border: none;
     border-radius: 1.875em;
-    background: #f39200;
+    background-color: #f39200;
     color: #fff;
     font-size: 1.0625em;
     cursor: pointer;
@@ -341,5 +338,46 @@ html {
 }
 
 .btn-enviar:hover {
-    background: #ff3a00;
+    background-color: #faa938;
+}
+
+
+/**/
+
+
+.page {
+    display: flex;
+    align-items: flex-start;
+    gap: 3em;      /* separa a imagem dos utensílios */
+}
+
+/* imagem principal */
+.comida {
+    width: 20em;
+    height: auto;
+    display: block;
+    object-fit: contain;
+}
+
+/* GRID dos utensílios */
+.utensilios {
+    display: grid;
+    grid-template-columns: repeat(3, 8em); /* sempre 3 por linha */
+    gap: 1.5em; /* espaço entre eles */
+}
+
+/* cada utensílio */
+.utensilios img {
+    width: 8em;
+    height: 8em;
+    padding: 0.5em;
+    background: #fff;
+    border-radius: 1em;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* efeito hover bem suave */
+.utensilios img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 1em rgba(0,0,0,0.2);
 }

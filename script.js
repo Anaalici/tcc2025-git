@@ -62,5 +62,18 @@ document.addEventListener("DOMContentLoaded", () => {
     setInterval(moveCarousel, 6000);
 });
 
+/* */
+window.onload = () => {
+    const logado = localStorage.getItem("logado");
 
+    const btnLogin = document.getElementById("btnLogin");
+    const btnPerfil = document.getElementById("btnPerfil");
 
+    if (logado === "true") {
+        if (btnLogin) btnLogin.style.display = "none";
+        if (btnPerfil) btnPerfil.style.display = "block";
+    } else {
+        if (btnLogin) btnLogin.style.display = "block";
+        if (btnPerfil) btnPerfil.style.display = "none";
+    }
+};
