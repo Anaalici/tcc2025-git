@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Receita</title>
+        <link rel="icon" href="img/favicon.png" type="image/png">
+
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* ---------- BASE DO SITE ---------- */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: #f9f5f0;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        /* ---------- TOPO LARANJA ---------- */
+        header {
+            background: #f39200;
+            color: #fff;
+            padding: 18px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.7rem;
+        }
+
+        /* ---------- CONTAINER CENTRAL ---------- */
+        .container {
+            max-width: 980px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+
+        /* ---------- BOTÃO VOLTAR ---------- */
+        .back-btn {
+            display: inline-block;
+            padding: 8px 14px;
+            background: #f39200;
+            color: #fff;
+            font-weight: 700;
+            border-radius: 10px;
+            text-decoration: none;
+            margin-bottom: 16px;
+        }
+
+        /* ---------- IMAGEM PRINCIPAL ---------- */
+        .img-container {
+            border-radius: 14px;
+            overflow: hidden;
+            margin-bottom: 12px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.10);
+        }
+
+        .img-container img {
+            width: 100%;
+            height: 340px;
+            object-fit: cover;
+        }
+
+        /* ---------- META ---------- */
+        .recipe-meta {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.95rem;
+            color: #555;
+            margin-bottom: 18px;
+        }
+
+        /* ---------- UTENSÍLIOS ---------- */
+        .utensilios {
+            background: #fff;
+            padding: 16px;
+            border-radius: 12px;
+            margin-bottom: 18px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+        }
+
+        .utensilios h3 {
+            color: #f39200;
+            margin: 0 0 10px;
+        }
+
+        .utensilios-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+        }
+
+        .utensilio-item {
+            width: 100px;
+            text-align: center;
+        }
+
+        .utensilio-item img {
+            width: 100%;
+            height: 75px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.10);
+        }
+
+        /* ---------- INGREDIENTES + PREPARO ---------- */
+        .info-container {
+            display: flex;
+            gap: 18px;
+        }
+
+        .info-box {
+            flex: 1;
+            background: #fff;
+            padding: 18px;
+            border-radius: 12px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+        }
+
+        .info-box h3 {
+            color: #f39200;
+            margin-top: 0;
+        }
+
+        .info-box ul,
+        .info-box ol {
+            padding-left: 18px;
+            margin-top: 8px;
+        }
+
+        @media(max-width:820px) {
+            .info-container {
+                flex-direction: column;
+            }
+
+            .img-container img {
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1 id="tituloReceita">Carregando...</h1>
+    </header>
+
+    <div class="container">
+
+        <a href="index.html#carrossel" class="back-btn">← Voltar</a>
+
+        <div class="img-container">
+            <img id="imagem" src="" alt="">
+        </div>
+
+        <div class="recipe-meta">
+            <span id="tempo"></span> • <span id="dificuldade"></span>
+        </div>
+
+        <div class="utensilios">
+            <h3>Utensílios:</h3>
+            <div class="utensilios-grid" id="listaUtensilios"></div>
+        </div>
+
+        <div class="info-container">
+            <div class="info-box">
+                <h3>Ingredientes:</h3>
+                <ul id="ingredientes"></ul>
+            </div>
+
+            <div class="info-box">
+                <h3>Modo de preparo:</h3>
+                <ol id="preparo"></ol>
+            </div>
+        </div>
+    </div>
+
+    <script src="receitas.js"></script>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get("r");
+
+        const receita = window.receitas[id];
+
+        if (!receita) {
+            document.getElementById("tituloReceita").textContent = "Receita não encontrada";
+        } else {
+
+            document.getElementById("tituloReceita").textContent = receita.titulo;
+            document.getElementById("imagem").src = receita.imagem;
+            document.getElementById("tempo").textContent = receita.tempo;
+            document.getElementById("dificuldade").textContent = receita.dificuldade;
+            const listaUt = document.getElementById("listaUtensilios");
+            listaUt.innerHTML = "";
+            receita.utensilios.forEach(u => {
+                listaUt.innerHTML += `
+            <div class="utensilio-item">
+                <img src="${u.imagem}" alt="">
+                <p>${u.nome}</p>
+            </div>
+        `;
+            });
+
+            const listaIng = document.getElementById("ingredientes");
+            listaIng.innerHTML = "";
+            receita.ingredientes.forEach(i => {
+                const li = document.createElement("li");
+                li.textContent = i;
+                listaIng.appendChild(li);
+            });
+
+            const listaPrep = document.getElementById("preparo");
+            listaPrep.innerHTML = "";
+            receita.preparo.forEach(p => {
+                const li = document.createElement("li");
+                li.textContent = p;
+                listaPrep.appendChild(li);
+            });
+        }
+    </script>
+
+</body>
+
+</html>

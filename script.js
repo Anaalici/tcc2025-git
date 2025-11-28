@@ -77,3 +77,34 @@ window.onload = () => {
         if (btnPerfil) btnPerfil.style.display = "none";
     }
 };
+
+/* */
+// receitas.js
+const receitas = [
+    {
+        id: 'sushi-salmao',
+        nome: 'Sushi de Salmão',
+        dificuldade: 'Fácil',
+        tempo: '30 min',
+        imagem: 'imgCategorias/sushi-2.jpg',
+        utensilios: [
+            {nome: 'Esteira de bambu', img: 'imgCategorias/esteira.jpg'},
+            {nome: 'Faca afiada', img: 'imgCategorias/faca.jpg'}
+        ],
+        ingredientes: ['Salmão fresco', 'Arroz japonês', 'Alga nori', 'Molho shoyu', 'Wasabi'],
+        preparo: 'Cozinhe o arroz temperado, corte o salmão em fatias finas, monte o sushi enrolando o arroz e o salmão na alga.'
+    },
+    {
+        id: 'ramen',
+        nome: 'Ramen',
+        dificuldade: 'Médio',
+        tempo: '45 min',
+        imagem: 'imgCategorias/ramen.jpg',
+        utensilios: [
+            {nome: 'Panela grande', img: 'imgCategorias/panela.jpg'},
+            {nome: 'Concha', img: 'imgCategorias/concha.jpg'}
+        ],
+        ingredientes: ['Macarrão', 'Caldo de frango', 'Ovos', 'Cebolinha', 'Carne de porco'],
+        preparo: 'Prepare o caldo, cozinhe o macarrão, monte a tigela com os ingredientes e sirva quente.'
+    }
+];

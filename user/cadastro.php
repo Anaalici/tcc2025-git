@@ -73,6 +73,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="../user/user.css">
     <script src="mostrarS.js" defer></script>
     <title>Cadastro - Receitas de Mestre</title>
+        <link rel="icon" href="img/favicon.png" type="image/png">
+
 </head>
 <body>
     
