@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <title>Categorias - Receita de Mestre</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-        <link rel="icon" href="img/favicon.png" type="image/png">
+    <link rel="icon" href="img/favicon.png" type="image/png">
 
     <style>
         body {
@@ -108,70 +108,192 @@
             fill: #ff3b3b;
             stroke: #ff3b3b;
         }
+
+        /* ESTILO DO BOTÃO ADICIONAR RECEITA (ÁREA E BOTÃO) */
+        .area-add {
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 1em;
+            /* CRÍTICO: ESCONDE O BOTÃO POR PADRÃO, O JS VAI MOSTRAR */
+            display: none; 
+        }
+
+        .add-btn {
+            background: transparent;
+            border: 0.1em solid #000;
+            color: #000;
+            font-size: 1.2em;
+            width: 1.5em;
+            height: 1.5em;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform .15s;
+            line-height: 0;
+        }
+
+        .add-btn:hover {
+            transform: scale(1.12);
+        }
     </style>
 </head>
 
 <body>
 
-    <a href="index.html#categoria" class="back-btn">← Voltar para categorias</a>
+    <a href="index.html#categoria" class="back-btn">← Voltar </a>
     <h1 id="tituloCategoria">Receitas</h1>
+
+    <div class="area-add">
+        <button class="add-btn" onclick="window.location.href='criarReceita.html'">
+            +
+        </button>
+    </div>
+
     <div class="grid" id="listaReceitas"></div>
 
     <script src="receitasData.js"></script>
 
     <script>
-    (function() {
-      if(!window.categorias){
-        document.getElementById('listaReceitas').innerHTML='<p>Erro: dados não encontrados.</p>';
-        return;
-      }
+        (function() {
+            // 1. Verificação de dados
+            if (!window.categorias) {
+                document.getElementById('listaReceitas').innerHTML = '<p>Erro: dados das receitas não encontrados.</p>';
+                return;
+            }
 
-      const lista = [].concat(...Object.values(window.categorias));
-      const container = document.getElementById('listaReceitas');
-      const favoritos = JSON.parse(localStorage.getItem("favoritos") || "[]");
+            // --- LÓGICA DE CARREGAMENTO E MESCLAGEM (Com Local Storage) ---
+            const savedDataString = localStorage.getItem('categoriasSalvas');
+            
+            if (savedDataString) {
+                try {
+                    const savedCategories = JSON.parse(savedDataString);
+                    
+                    for (const categoria in savedCategories) {
+                        const novosItens = savedCategories[categoria];
+                        
+                        if (window.categorias[categoria]) {
+                            const idsExistentes = new Set(window.categorias[categoria].map(r => r.id));
+                            
+                            novosItens.forEach(novaReceita => {
+                                if (!idsExistentes.has(novaReceita.id)) {
+                                    window.categorias[categoria].push(novaReceita);
+                                }
+                            });
 
-      lista.forEach(r=>{
-        const card = document.createElement("div");
-        card.className = "card";
+                        } else {
+                            window.categorias[categoria] = novosItens;
+                        }
+                    }
 
-        const ativo = favoritos.includes(r.id) ? "active" : "";
+                } catch (e) {
+                    console.error("Erro ao carregar dados salvos:", e);
+                }
+            }
+            // --- FIM LÓGICA DE CARREGAMENTO E MESCLAGEM ---
 
-        card.innerHTML = `
-          <div class="fav-btn ${ativo}" onclick="toggleFavorito(event,'${r.id}')">
-            <svg viewBox="0 0 24 24">
-              <path d="M12.1 8.64c-1.44-1.72-4.12-1.72-5.56 0a3.93 3.93 0 000 5.28L12 19.4l5.46-5.48a3.93 3.93 0 000-5.28c-1.44-1.72-4.12-1.72-5.36 0z"/>
-            </svg>
-          </div>
-          <a href="receitas.html?r=${encodeURIComponent(r.id)}">
-            <img src="${r.imagem}" alt="${r.nome}">
-            <div class="card-content">
-              <h3>${r.nome}</h3>
-              <p>${r.dificuldade} • ${r.tempo}</p>
-            </div>
-          </a>
-        `;
 
-        container.appendChild(card);
-      });
-    })();
+            // 2. Coleta os parâmetros da URL (busca ou categoria)
+            const params = new URLSearchParams(window.location.search);
+            const termoPesquisa = params.get('search');
+            const categoriaUrl = params.get('cat');
+            
+            // 3. Lógica de visibilidade do botão (CORREÇÃO FINAL)
+            const areaAddBtn = document.querySelector('.area-add');
 
-    window.toggleFavorito = function(e,id){
-      e.preventDefault();
-      e.stopPropagation();
+            // CORREÇÃO: VERIFICA APENAS A PRESENÇA DO PARÂMETRO 'cat' na URL
+            if (areaAddBtn && categoriaUrl) {
+                // Se o parâmetro 'cat' estiver na URL, MOSTRA o botão de adicionar
+                areaAddBtn.style.display = 'flex'; 
+                
+                // CRÍTICO: Ajusta o botão para redirecionar para a criação de receita JÁ COM a categoria pré-selecionada.
+                document.querySelector('.add-btn').onclick = function() {
+                    window.location.href = `criarReceita.html?cat=${categoriaUrl}`;
+                };
+            }
 
-      const btn = e.currentTarget;
-      btn.classList.toggle("active");
 
-      let favs = JSON.parse(localStorage.getItem("favoritos") || "[]");
-      if(btn.classList.contains("active")){
-        if(!favs.includes(id)) favs.push(id);
-      }else{
-        favs = favs.filter(x=>x!==id);
-      }
+            // 4. Concatena e Filtra
+            const todasReceitas = Object.values(window.categorias).flat();
+            let listaParaExibir = [];
+            let titulo = "Todas as Receitas";
 
-      localStorage.setItem("favoritos",JSON.stringify(favs));
-    }
-  </script>
+            if (termoPesquisa) {
+                // LÓGICA DE BUSCA
+                const termoMinusculo = termoPesquisa.toLowerCase();
+                listaParaExibir = todasReceitas.filter(r => 
+                    r.nome.toLowerCase().includes(termoMinusculo)
+                );
+                titulo = `Resultados da Busca: "${termoPesquisa}"`;
+
+            } else if (categoriaUrl && window.categorias[categoriaUrl]) {
+                // LÓGICA DE CATEGORIA
+                listaParaExibir = window.categorias[categoriaUrl];
+                titulo = categoriaUrl.charAt(0).toUpperCase() + categoriaUrl.slice(1) + "s";
+
+            } else {
+                listaParaExibir = todasReceitas;
+                titulo = "Todas as Receitas";
+            }
+            
+            const container = document.getElementById('listaReceitas');
+            const favoritos = JSON.parse(localStorage.getItem("favoritos") || "[]");
+            
+            // 5. Exibe mensagem se a busca não encontrar nada
+            if (listaParaExibir.length === 0 && (termoPesquisa || categoriaUrl)) {
+                const mensagem = termoPesquisa ? `Nenhuma receita encontrada para "${termoPesquisa}".` : `Nenhuma receita nesta categoria.`;
+                container.innerHTML = `<p style="grid-column:1/-1;padding:20px;background:#fff;border-radius:8px">${mensagem}</p>`;
+                document.getElementById('tituloCategoria').textContent = titulo;
+                return;
+            }
+
+            // 6. Gera os cards para exibição
+            listaParaExibir.forEach(r => {
+                const card = document.createElement("div");
+                card.className = "card";
+
+                const ativo = favoritos.includes(r.id) ? "active" : "";
+
+                card.innerHTML = `
+                <div class="fav-btn ${ativo}" onclick="toggleFavorito(event,'${r.id}')">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12.1 8.64c-1.44-1.72-4.12-1.72-5.56 0a3.93 3.93 0 000 5.28L12 19.4l5.46-5.48a3.93 3.93 0 000-5.28c-1.44-1.72-4.12-1.72-5.36 0z"/>
+                    </svg>
+                </div>
+                <a href="receitas.html?r=${encodeURIComponent(r.id)}">
+                    <img src="${r.imagem}" alt="${r.nome}">
+                    <div class="card-content">
+                    <h3>${r.nome}</h3>
+                    <p>${r.dificuldade} • ${r.tempo}</p>
+                    </div>
+                </a>
+                `;
+                container.appendChild(card);
+            });
+            
+            document.getElementById('tituloCategoria').textContent = titulo;
+        })();
+
+        // A função toggleFavorito (favoritar) é mantida
+        window.toggleFavorito = function(e,id){
+            e.preventDefault();
+            e.stopPropagation();
+
+            const btn = e.currentTarget;
+            btn.classList.toggle("active");
+
+            let favs = JSON.parse(localStorage.getItem("favoritos") || "[]");
+            if(btn.classList.contains("active")){
+                if(!favs.includes(id)) favs.push(id);
+            }else{
+                favs = favs.filter(x=>x!==id);
+            }
+
+            localStorage.setItem("favoritos",JSON.stringify(favs));
+        }
+    </script>
 </body>
 
 </html>

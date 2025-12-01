@@ -324,10 +324,14 @@ a {
   font-weight: 600;
 }
 
-.loginuser {
-  gap: 2em;
-  width: 2em;
-  height: 1.8em;
+.loginuser-icon {
+    font-size: 1.8em; 
+    color: #582704; 
+    height: 1.8em; 
+    width: 2em; 
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 
@@ -372,7 +376,6 @@ a {
   font-weight: bold;
   color: #faa938;
   margin-top: 1em;
-  text-transform: lowercase;
   font-size: 1em;
 }
 

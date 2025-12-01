@@ -108,3 +108,27 @@ const receitas = [
         preparo: 'Prepare o caldo, cozinhe o macarrão, monte a tigela com os ingredientes e sirva quente.'
     }
 ];
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    // Seleciona o campo de input e o botão "pesquisar" na página index.html
+    const inputPesquisa = document.getElementById("meuInput");
+    const btnPesquisar = document.querySelector(".botaoEnviar");
+
+    if (btnPesquisar && inputPesquisa) {
+        btnPesquisar.addEventListener("click", (e) => {
+            e.preventDefault(); // Impede o envio de formulário padrão (se houver)
+            const termo = inputPesquisa.value.trim();
+            
+            // Redireciona para receitasC.html, passando o termo de busca como parâmetro 'search'
+            if (termo) {
+                window.location.href = `receitasC.html?search=${encodeURIComponent(termo)}`;
+            } else {
+                // Se o campo estiver vazio, apenas navega para a página de receitas
+                window.location.href = `receitasC.html`;
+            }
+        });
+    }
+});
+
+

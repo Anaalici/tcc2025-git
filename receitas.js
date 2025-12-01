@@ -11,7 +11,8 @@ window.receitas = {
             { nome: "Forma", imagem: "img/forma.jpg" }
         ],
         ingredientes: ["3 cenouras", "2 xícaras de farinha", "3 ovos", "1 xícara de açúcar"],
-        preparo: ["Bata tudo no liquidificador.", "Asse por 40 minutos a 180°C."]
+        preparo: ["Bata tudo no liquidificador.", "Asse por 40 minutos a 180°C."],
+        comentarios: []
     },
 
 
@@ -20,7 +21,8 @@ window.receitas = {
         titulo: "Frango Crocante",
         imagem: "img/frango.jpg",
         ingredientes: ["500g de frango", "Farinha", "Ovos", "Temperos"],
-        preparo: ["Empane o frango.", "Frite até dourar."]
+        preparo: ["Empane o frango.", "Frite até dourar."],
+        comentarios: []
     },
 
     strogonoff: {
@@ -28,7 +30,8 @@ window.receitas = {
         titulo: "Strogonoff de Frango",
         imagem: "img/strogonoff.jpg",
         ingredientes: ["Frango", "Creme de leite", "Ketchup", "Mostarda"],
-        preparo: ["Refogue o frango.", "Adicione os molhos."]
+        preparo: ["Refogue o frango.", "Adicione os molhos."],
+        comentarios: []
     }
 };
 
