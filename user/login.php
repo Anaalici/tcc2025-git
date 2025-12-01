@@ -92,8 +92,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 
                 <div class="input-group">
                     <input class="inputLogin" type="password" id="senha" name="senha" placeholder="Senha" required autocomplete="off">
-                    <span toggle="#senha" class="fas fa-eye toggle-password" onclick="mostrarOcultarSenha(this)"></span>
                 </div>
+                <span toggle="#senha" class="fas fa-eye toggle-password" onclick="mostrarOcultarSenha(this)"></span>
                 <div class="EsqueciS">
                     <a class="senha" href="../user/esqueceuS.php">Esqueci senha</a>
                 </div>
