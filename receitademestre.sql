@@ -84,7 +84,7 @@ CREATE TABLE `contato` (
 CREATE TABLE `receita` (
   `idReceita` int(11) NOT NULL,
   `nomeReceita` varchar(50) NOT NULL,
-  `descricaoReceita` varchar(255) NOT NULL,
+  `utensilios` varchar(255) NOT NULL,
   `ingredientes` varchar(255) NOT NULL,
   `modoPreparo` varchar(255) NOT NULL,
   `tempoMedio` varchar(50) NOT NULL,
@@ -247,12 +247,21 @@ ALTER TABLE `receita`
 
 ALTER TABLE `usuario`
 ADD COLUMN `tokenRedefinicao` VARCHAR(255) NULL AFTER `senha`,
-ADD COLUMN `expiracaoToken` DATETIME NULL AFTER `tokenRedefinicao`;
+ADD COLUMN `expiracaoToken` DATETIME NULL AFTER `tokenRedefinicao`,
+ADD COLUMN bio TEXT NULL,
+ADD COLUMN fotoPerfil VARCHAR(255) NULL;
 --
 -- Restrições para tabelas `tempero`
 --
 ALTER TABLE `tempero`
   ADD CONSTRAINT `tempero_ibfk_1` FOREIGN KEY (`idCategoriaTemp`) REFERENCES `categoriatempero` (`idCategoriaTemp`);
+
+  ALTER TABLE `receita`
+ADD COLUMN `urlFoto` VARCHAR(255) NULL AFTER `tempoMedio`;
+
+ALTER TABLE `receita`
+ADD COLUMN `idUsuario` INT(11) NOT NULL AFTER `urlFoto`,
+ADD INDEX `fk_idUsuario` (`idUsuario`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
