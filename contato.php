@@ -93,53 +93,50 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Contato</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="style2.css">
-    <link rel="icon" href="/img/favicon.png" type="image/png">
+    <link rel="icon" href="img/favicon.png" type="image/png">
 </head>
 
 <body>
 
-        <section id="home">
-        <header id="main-header">
+          <header id="main-header">
             <div class="container">
                 <div class="flex">
                     <a href="index.html"><img class="logo" src="./img/LogoTCC.png"></a>
                     <nav>
                         <ul class="menu">
-                            <li><a href="index.html">Home</a></li>
-                            <li><a href="#receitas">Receitas</a></li>
+                            <li><a href="#home">Home</a></li>
+                            <li><a href="receitas.html">Receitas</a></li>
                             <li><a href="contato.php">Contato</a></li>
                             <li><a href="#favoritos">Favoritad<span class="coracao"><i
                                             class="fas fa-heart"></i></span>s</a></li>
 
-                            <!-- <div class="toggle-container">
-                            <label class="switch">
-                                <input type="checkbox" id="togglePaginas">
-                                <span class="slidel-toggle">
-                                    <span class="circle" id="circle">
-                                        <span id="iconeSwitch">🍴</span>
-                                    </span>
-                                </span>
-                            </label>
-                        </div>   
+                                            <li class="toggle-control-item">
+           <div class="icon-toggle" id="page-toggle">
+    <span class="toggle-state" data-view="recipes"> <i class="fa-solid fa-pepper-hot"></i> 
+    </span>
+    <span class="toggle-state" data-view="utensils">
+        <i class="fa-solid fa-utensils"></i>
+    </span>
+</div>
+        </li>
 
-                            <div class="search">
-                                <label for="searchInput">
-                                    <span <i class="fa-solid fa-magnifying-glass"></i></span>
-                                </label>
-                                <input type="text" id="searchInput" placeholder="Pesquisar">
-                            </div>-->
+                            <div class="userlogin" id="btnLogin">
+    <a href="./user/login.php">
+        <i class="fa-solid fa-right-to-bracket loginuser-icon"></i>
+    </a>
+</div>
 
-                            <div class="userlogin">
-                                <a href="login.php"><img class="loginuser" src="./img/user.png" alt=""></a>
-                            </div>
-
+<div class="userperfil" id="btnPerfil" style="display: none;">
+    <a href="contaUsuario.html">
+        <img class="loginuser" src="./img/entrar.png" alt="">
+    </a>
+</div>
 
                         </ul>
                     </nav>
                 </div>
             </div>
         </header>
-    </section>
 
     <section class="contato-container">
         <h2 class="titulo-contato">Fale diretamente com nossos chefs especialistas, sempre prontos para ajudar você a cozinhar com mais praticidade e sabor.</h2>

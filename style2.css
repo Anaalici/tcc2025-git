@@ -26,10 +26,84 @@ html {}
     background-color: transparent;
     z-index: 1000;
 }
+/* --- CONFIGURAÇÃO DO EFEITO DE DESLIZAR (Sliding Effect) --- */
 
-#main-header.scrolled {
-    background-color: #fff;
-    height: 3em;
+/* 1. CONTAINER: O Trilho (icon-toggle) */
+.icon-toggle {
+    display: flex;
+    align-items: center;
+    background-color: #e0e0e0;
+    border-radius: 2em;
+    width: 5.5em; 
+    
+    position: relative; 
+    
+    justify-content: space-between; 
+    padding: 0.3em;
+    cursor: pointer;
+    height: 2.2em;
+    z-index: 1; 
+}
+
+/* 2. ELEMENTO DESLIZANTE (::before) - A Bolinha Branca */
+.icon-toggle::before {
+    content: ''; 
+    position: absolute; 
+    
+    width: 1.5em;
+    height: 1.5em;
+    
+    left: 0.3em; 
+    top: 0.35em; 
+    
+    background-color: white; /* ESTE É O FUNDO BRANCO */
+    border-radius: 50%; 
+    box-shadow: 0 0.0625em 0.1875em rgba(0,0,0,0.3);
+    
+    transition: transform 0.3s ease; 
+    z-index: 2; 
+}
+
+/* 3. ESTADO ALVO: Quando a classe é ativada pelo JavaScript */
+.icon-toggle.utensils-view-active::before {
+    transform: translateX(3.4em); 
+}
+
+/* 4. COLUNAS DE ÍCONES (Fixas e Centralizadas) */
+.toggle-state {
+    display: flex; 
+    justify-content: center; 
+    align-items: center;   
+    
+    width: 1.5em; 
+    height: 1.5em;
+    
+    font-size: 1em; 
+    color: #444; /* Ícones inativos têm essa cor */
+    padding: 0;
+    z-index: 3; 
+    /* REMOVIDO: background-color: white; OU box-shadow AQUI */
+    /* NADA DE FUNDO BRANCO OU SOMBRA NESTE ELEMENTO */
+}
+
+/* 5. MUDANÇA DE COR AO ATIVAR (Feedback visual) */
+/* Estas regras controlam a cor do texto do ícone, não o fundo */
+.icon-toggle.utensils-view-active [data-view="recipes"] {
+    color: #444; 
+}
+
+.icon-toggle.utensils-view-active [data-view="utensils"] {
+    color: black; 
+}
+
+/* NOVO: ESTILO PARA O ÍCONE ATIVO QUANDO NÃO HÁ A CLASSE utensils-view-active no PAI */
+/* Garante que o ícone de 'recipes' comece preto (ativo) */
+.icon-toggle:not(.utensils-view-active) [data-view="recipes"] {
+    color: black;
+}
+.icon-toggle:not(.utensils-view-active) [data-view="utensils"] {
+    color: #444;
+
 }
 
 /*Section pesquisa*/
@@ -98,8 +172,6 @@ html {}
     border-radius: 1em;
     cursor: pointer;
 }
-
-
 
 
 .receitas {
@@ -346,15 +418,12 @@ html {}
 
 
 /**/
-
-
 .page {
     display: flex;
     align-items: flex-start;
-    gap: 3em;      /* separa a imagem dos utensílios */
+    gap: 3em;     
 }
 
-/* imagem principal */
 .comida {
     width: 20em;
     height: auto;
@@ -362,14 +431,12 @@ html {}
     object-fit: contain;
 }
 
-/* GRID dos utensílios */
 .utensilios {
     display: grid;
-    grid-template-columns: repeat(3, 8em); /* sempre 3 por linha */
-    gap: 1.5em; /* espaço entre eles */
+    grid-template-columns: repeat(3, 8em); 
+    gap: 1.5em; 
 }
 
-/* cada utensílio */
 .utensilios img {
     width: 8em;
     height: 8em;

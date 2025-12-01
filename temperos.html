@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Receitas de Mestre</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <title>Temperos - Receitas de Mestre</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="style2.css">
-    <link rel="icon" href="img/favicon.png" type="image/png">
+    <link rel="icon" href="./img/favicon.png" type="image/png">
 </head>
 <body>
-
-   <section id="home">
+    
+     <section id="home">
         <header id="main-header">
             <div class="container">
                 <div class="flex">
@@ -20,49 +20,52 @@
                         <ul class="menu">
                             <li><a href="#home">Home</a></li>
                             <li><a href="receitas.html">Receitas</a></li>
-                            <li><a href="contato.html">Contato</a></li>
+                            <li><a href="contato.php">Contato</a></li>
                             <li><a href="favoritados.html">Favoritad<span class="coracao"><i
                                             class="fas fa-heart"></i></span>s</a></li>
 
-                                            <!-- TOGGLE DE PÁGINAS -->
-<div class="switch-container">
-    <input type="checkbox" id="pageToggle">
-    <label for="pageToggle" class="switch">
-        <div class="option left">
-            <i class="fa-solid fa-utensils"></i>
-        </div>
-
-        <div class="option right">
+    <li class="toggle-control-item">
+    <div class="icon-toggle" id="page-toggle">
+        <span class="toggle-state" data-view="recipes">
             <i class="fa-solid fa-pepper-hot"></i>
-        </div>
-
-        <span class="circle"></span>
-    </label>
-</div>
-
-<link rel="stylesheet" href="toggle.css">
-<script src="toggle.js" defer></script>
-
-
+        </span>
+        
+        <span class="toggle-state" data-view="utensils">
+            <i class="fa-solid fa-utensils"></i>
+        </span>
+    </div>
+</li>
 
                             <div class="userlogin" id="btnLogin">
-                                <a href="./user/login.php">
-                                    <img class="loginuser" src="./img/user.png" alt=""></a>
-                            </div>
+    <a href="./user/login.php">
+        <i class="fa-solid fa-right-to-bracket loginuser-icon"></i>
+    </a>
+</div>
 
-                            <div class="userperfil" id="btnPerfil" style="display: none;">
-                                <a href="./user/perfil.php">
-                                    <img class="loginuser" src="./img/entrar.png" alt="">
-                                </a>
-
-                            </div>
-
+<div class="userperfil" id="btnPerfil" style="display: none;">
+    <a href="contaUsuario.html">
+        <img class="loginuser" src="./img/entrar.png" alt="">
+    </a>
+</div>
 
                         </ul>
                     </nav>
                 </div>
             </div>
         </header>
-    </section>    
+    </section>
+
+    <section id="home">
+        <div class="slider">
+            <div class="slides">
+                <img class="slide" src="./img/banner.png" alt="foto1">
+                <img class="slide" src="./img/cupcakeC.png" alt="foto2">
+                <img class="slide" src="./img/pizza.png" alt="foto3">
+                <img class="slide" src="./img/frango.png" alt="foto4">
+                <img class="slide" src="./img/banner.png" alt="foto1">
+            </div>
+        </div>
+    </section>
+    
 </body>
 </html>

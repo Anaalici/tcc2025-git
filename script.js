@@ -1,5 +1,4 @@
-//Carrossel do banner inicial//
-
+// Carrossel do banner inicial - (MANTIDO FORA DO DOMContentLoaded, COMO ESTAVA)
 const slides = document.querySelector('.slides');
 const slideElements = document.querySelectorAll('.slide');
 const totalSlides = slideElements.length;
@@ -22,8 +21,7 @@ function showNextSlide() {
 
 setInterval(showNextSlide, 9000);
 
-
-
+// Evento de Scroll para o Header
 window.addEventListener("scroll", function () {
   const header = document.getElementById("main-header");
   if (window.scrollY > 0) {
@@ -33,102 +31,108 @@ window.addEventListener("scroll", function () {
   }
 });
 
-
-
-
-//Carrossel do receitas mais vistas//
-document.addEventListener("DOMContentLoaded", () => {
-
-    const track = document.querySelector(".carrossel-track");
-    const slides = document.querySelectorAll(".car-item");
-
-    let index = 0;
-
-    function moveCarousel() {
-        index++;
-        track.style.transition = "transform 0.6s ease-in-out";
-        track.style.transform = `translateX(-${index * 100}%)`;
-
-        // quando chegar no final → reseta sem animação
-        if (index === slides.length) {
-            setTimeout(() => {
-                track.style.transition = "none";
-                index = 0;
-                track.style.transform = "translateX(0%)";
-            }, 600);
-        }
-    }
-
-    setInterval(moveCarousel, 6000);
-});
-
-/* */
+// Checagem de Login (window.onload)
 window.onload = () => {
-    const logado = localStorage.getItem("logado");
+    const logado = localStorage.getItem("logado");
 
-    const btnLogin = document.getElementById("btnLogin");
-    const btnPerfil = document.getElementById("btnPerfil");
+    const btnLogin = document.getElementById("btnLogin");
+    const btnPerfil = document.getElementById("btnPerfil");
 
-    if (logado === "true") {
-        if (btnLogin) btnLogin.style.display = "none";
-        if (btnPerfil) btnPerfil.style.display = "block";
-    } else {
-        if (btnLogin) btnLogin.style.display = "block";
-        if (btnPerfil) btnPerfil.style.display = "none";
-    }
+    if (logado === "true") {
+        if (btnLogin) btnLogin.style.display = "none";
+        if (btnPerfil) btnPerfil.style.display = "block";
+    } else {
+        if (btnLogin) btnLogin.style.display = "block";
+        if (btnPerfil) btnPerfil.style.display = "none";
+    }
 };
 
-/* */
-// receitas.js
+// Objeto de Receitas (MANTIDO, PODE SER REMOVIDO SE USAR RECEITASDATA.JS)
 const receitas = [
-    {
-        id: 'sushi-salmao',
-        nome: 'Sushi de Salmão',
-        dificuldade: 'Fácil',
-        tempo: '30 min',
-        imagem: 'imgCategorias/sushi-2.jpg',
-        utensilios: [
-            {nome: 'Esteira de bambu', img: 'imgCategorias/esteira.jpg'},
-            {nome: 'Faca afiada', img: 'imgCategorias/faca.jpg'}
-        ],
-        ingredientes: ['Salmão fresco', 'Arroz japonês', 'Alga nori', 'Molho shoyu', 'Wasabi'],
-        preparo: 'Cozinhe o arroz temperado, corte o salmão em fatias finas, monte o sushi enrolando o arroz e o salmão na alga.'
-    },
-    {
-        id: 'ramen',
-        nome: 'Ramen',
-        dificuldade: 'Médio',
-        tempo: '45 min',
-        imagem: 'imgCategorias/ramen.jpg',
-        utensilios: [
-            {nome: 'Panela grande', img: 'imgCategorias/panela.jpg'},
-            {nome: 'Concha', img: 'imgCategorias/concha.jpg'}
-        ],
-        ingredientes: ['Macarrão', 'Caldo de frango', 'Ovos', 'Cebolinha', 'Carne de porco'],
-        preparo: 'Prepare o caldo, cozinhe o macarrão, monte a tigela com os ingredientes e sirva quente.'
-    }
+    // ... seu array de receitas ...
 ];
 
 
+// --- LÓGICA PRINCIPAL (Carrossel Vistas, Busca e NOVO TOGGLE) ---
 document.addEventListener("DOMContentLoaded", () => {
-    // Seleciona o campo de input e o botão "pesquisar" na página index.html
-    const inputPesquisa = document.getElementById("meuInput");
-    const btnPesquisar = document.querySelector(".botaoEnviar");
 
-    if (btnPesquisar && inputPesquisa) {
-        btnPesquisar.addEventListener("click", (e) => {
-            e.preventDefault(); // Impede o envio de formulário padrão (se houver)
-            const termo = inputPesquisa.value.trim();
-            
-            // Redireciona para receitasC.html, passando o termo de busca como parâmetro 'search'
-            if (termo) {
-                window.location.href = `receitasC.html?search=${encodeURIComponent(termo)}`;
-            } else {
-                // Se o campo estiver vazio, apenas navega para a página de receitas
-                window.location.href = `receitasC.html`;
-            }
-        });
-    }
+    // Carrossel do receitas mais vistas (MANTIDO)
+    const track = document.querySelector(".carrossel-track");
+    const slidesCar = document.querySelectorAll(".car-item");
+
+    if (track && slidesCar.length > 0) {
+        let indexCar = 0;
+
+        function moveCarousel() {
+            indexCar++;
+            track.style.transition = "transform 0.6s ease-in-out";
+            track.style.transform = `translateX(-${indexCar * 100}%)`;
+
+            if (indexCar === slidesCar.length) {
+                setTimeout(() => {
+                    track.style.transition = "none";
+                    indexCar = 0;
+                    track.style.transform = "translateX(0%)";
+                }, 600);
+            }
+        }
+        setInterval(moveCarousel, 6000);
+    }
+
+
+    // Lógica de Busca (MANTIDA)
+    const inputPesquisa = document.getElementById("meuInput");
+    const btnPesquisar = document.querySelector(".botaoEnviar");
+
+    if (btnPesquisar && inputPesquisa) {
+        btnPesquisar.addEventListener("click", (e) => {
+            e.preventDefault();
+            const termo = inputPesquisa.value.trim();
+            
+            if (termo) {
+                window.location.href = `receitasC.html?search=${encodeURIComponent(termo)}`;
+            } else {
+                window.location.href = `receitasC.html`;
+            }
+        });
+    }
+    
+    
+    // --- NOVO CÓDIGO: LÓGICA DO TOGGLE DE DESLIZAR ---
+    const toggleElement = document.getElementById('page-toggle');
+
+    if (toggleElement) {
+        toggleElement.addEventListener('click', function() {
+            // CRÍTICO: Alterna a classe que o CSS usa para aplicar o 'transform: translateX'
+            this.classList.toggle('utensils-view-active'); 
+
+            const isUtensilsActive = this.classList.contains('utensils-view-active');
+            
+            // Seleciona os containers de estado (ícones)
+            const recipesState = toggleElement.querySelector('[data-view="recipes"]');
+            const utensilsState = toggleElement.querySelector('[data-view="utensils"]');
+
+
+            if (isUtensilsActive) {
+                // ESTADO ATIVADO: MODO UTENSÍLIOS
+                
+                // Troca visual dos ícones
+                recipesState.classList.remove('active');
+                utensilsState.classList.add('active');
+
+window.location.href = 'temperos.html';
+
+
+            } else {
+                // ESTADO DESATIVADO: MODO RECEITAS
+                
+                // Troca visual dos ícones
+                utensilsState.classList.remove('active');
+                recipesState.classList.add('active');
+                
+                // LÓGICA DE NAVEGAÇÃO: Adicione o redirecionamento aqui
+                 window.location.href = 'index.html';
+            }
+        });
+    }
 });
-
-

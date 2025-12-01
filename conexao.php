@@ -6,7 +6,7 @@ if (!isset($_SESSION)) {
 $servidor = "localhost";
 $username = "root";
 $usersenha = "";
-$database = "receitadmestre";
+$database = "receitademestre";
 
 $conexao = new mysqli($servidor, $username, $usersenha, $database);
 
