@@ -1,0 +1,108 @@
+body {
+    margin: 0;
+    background-color: black;
+    margin: 0;
+    padding: 10px;
+
+}
+
+.h1 {   
+    justify-content: center;
+    text-align: center;
+    color: red;       
+}
+
+.p2 {
+    color: white;
+    border-left: 30px;
+    padding: 20px;
+    border: 20px;
+}
+
+.p3 {
+color: white;
+margin: 0;
+border-left: 20px;  
+padding-left: 70px;
+border: 20px;
+font-size: 20px;
+}
+
+
+.texto {
+    color: white;
+    justify-content: center;
+    text-align: center  ;
+}
+
+form{
+    color: white;
+    font-size: 14px;
+    font-family: Arial, Helvetica, sans-serif;
+    padding-left: 20px;
+}
+
+.drop-menu {
+position: absolute;
+box-shadow: 0 0 2px black;
+background-color: white;
+display: none;
+}
+
+
+.drop-menu a {
+    display: block;
+    color: black;
+}
+
+.drop:hover .drop-menu {
+ display: block;   
+}
+
+nav ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;}
+
+    nav ul li {
+        display: inline; /* Mostra os itens horizontalmente */ }
+
+        nav ul li a {
+            display: inline-block;
+            padding: 10px 20px; /* Adiciona espaçamento ao redor do texto */
+            text-decoration: none; /* Remove a sublinhado padrão */
+            color: black; /* Cor do texto */ }
+
+            nav ul li a:hover {
+                background-color: #f0f0f0; /* Adiciona uma cor de fundo quando passa o mouse por cima */
+                color: black; /* Muda a cor do texto quando passa o mouse por cima */
+                
+              }
+
+              
+
+              .divisao {
+                display: flex;
+                justify-content: center;
+                background-color: white;         
+                margin-top: -10px;   
+                height: 70px;
+          }
+
+          
+          
+
+            .imagem {
+                padding: 20px;
+            }
+
+            .imagem1 {
+                border: 2px solid black;
+                border-radius: 8px;
+            }
+
+            .imagem2 {
+                padding: 50px;
+                border: 10px solid black;
+                border-radius: 20px;
+            }

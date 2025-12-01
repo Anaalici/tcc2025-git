@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Formulário PHP</title>
+        <style>
+        </style>
+        <link rel="stylesheet" href="css.css">
+
+    </head>
+    <body bgcolor="black">
+        <header>
+            <div class="divisao">
+            <nav>
+                <ul>
+                    <li class="drop"><a href="cursos.html">Cursos</a>
+                        <div class="drop-menu">
+                            <a href="ingles.html">Inglês</a>
+                            <a href="espanhol.html">Espanhol</a>
+                            <a href="italiano.html">Italiano</a>
+                            <a href="alemao.html">Alemão</a>
+                        </div></li>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="sobre.html">Sobre</a> </li>
+                    <li><a href="formulario.html">Inscrição</a></li>
+                </ul>
+            </nav>
+        </div>
+        </header>
+        <form action="confirmacao.php" method="get">
+        <h1 class="texto">Ficha de inscrição do aluno</h1>
+            Nome: <input type="text" name="nome" value=""> <br>
+            Endereço:<input type="text" name="endereco" value=""><br>
+            Idade: <input type="text" name="idade" value=""><br>
+            Telefone: <input type="text" name="telefone" value=""><br>
+            Nome do pai: <input type="text" name="nomedopai" value=""><br>
+            nome da mãe: <input type="text" name="nomedamae" value=""><br>
+            Cidade: <input type="text" name="cidade" value=""><br>
+            Data de nascimento: <input type="text" name="datadenascimento" value=""><br>
+            Sexo: <select name="sexo">
+         <option value="1">Feminino</option> 
+         <option value="2">Masculino</option>    
+    </select>
+            <h1>Sobre o curso</h1>  
+            Já fez algum outro curso?: <select name="outrocurso"><br><br>
+        <option value="1">Sim</option><br><br>
+        <option value="2">Não</option><br>
+    </select><br><br>
+            Qual?:<input type="text" name="qual" value=""><br>
+            Onde?: <input type="text" name="onde" value=""><br>
+     </select>
+            Curso: <select name="curso">
+        <option value="1">Espanhol</option>
+         <option value="2">Inglês</option>
+        <option value="3">Italiano</option>
+        <option value="4">Alemão</option>
+    </select><br>
+            Nível: <select name="nível">
+        <option value="1">Básico</option>
+        <option value="2">Intermediário</option>
+        <option value="3">Avançado</option>
+         </select><br>
+    <input type="submit" value="Enviar">
+    </form>
+   </body>
+    </html>

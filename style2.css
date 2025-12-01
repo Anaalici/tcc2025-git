@@ -99,6 +99,9 @@ html {}
     cursor: pointer;
 }
 
+
+
+
 .receitas {
     display: flex;
     justify-content: center;
@@ -321,7 +324,7 @@ html {}
 }
 
 .form-contato label {
-    font-size: 0.9375em;
+     font-weight: 600;
     color: #4a2e1b;
 }
 

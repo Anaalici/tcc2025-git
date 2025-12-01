@@ -60,6 +60,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <script src="mascaras.js" defer></script> 
     
     <title>Login - Receitas de Mestre</title>
+    <link rel="icon" href="img/favicon.png" type="image/png">
+
 </head>
 <body>
 

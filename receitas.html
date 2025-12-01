@@ -1,11 +1,479 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Receitas - Receitas de Mestre</title>
+    <meta charset="utf-8">
+    <title>Receita</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="img/favicon.png" type="image/png">
+
+    <style>
+        body {
+            font-family: Roboto, sans-serif;
+            background: #f9f5f0;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        header {
+            background: #f39200;
+            color: #fff;
+            padding: 1.125em;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.6em;
+        }
+
+        .container {
+            max-width: 61.25em;
+            margin: 1.125em auto;
+            padding: 1.125em;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 0.75em;
+            padding: 0.5em 0.75em;
+            background: #f39200;
+            color: #fff;
+            border-radius: 0.5em;
+            text-decoration: none;
+        }
+
+        .img-container {
+            border-radius: 0.75em;
+            overflow: hidden;
+            margin-bottom: 0.875em;
+        }
+
+        .img-container img {
+            width: 100%;
+            height: 20em;
+            object-fit: cover;
+            display: block;
+        }
+
+        .recipe-meta {
+            display: flex;
+            gap: 0.75em;
+            align-items: center;
+            justify-content: flex-end;
+            margin-bottom: 0.75em;
+            color: #555;
+            font-size: 0.95em;
+        }
+
+        .utensilios {
+            background: #fffdf8;
+            padding: 0.75em;
+            border-radius: 0.625em;
+            margin-bottom: 0.75em;
+        }
+
+        .utensilios-grid {
+            display: flex;
+            gap: 0.625em;
+            flex-wrap: wrap;
+            margin-top: 0.5em;
+        }
+
+        .utensilio-item {
+            text-align: center;
+            width: 5.625em;
+        }
+
+        .utensilio-item img {
+            width: 100%;
+            height: 4.375em;
+            object-fit: cover;
+            border-radius: 0.5em;
+            box-shadow: 0 0.25em 0.75em rgba(0, 0, 0, 0.06);
+        }
+
+        .info-container {
+            display: flex;
+            gap: 1.125em;
+            margin-top: 0.75em;
+        }
+
+        .info-left,
+        .info-right {
+            flex: 1;
+            background: #fffdf8;
+            padding: 0.875em;
+            border-radius: 0.625em;
+        }
+
+        .info-left ul {
+            margin: 0;
+            padding-left: 1.2em;
+        }
+
+        .info-left li {
+            margin-bottom: 0.375em;
+        }
+
+        @media (max-width: 51.25em) {
+            .info-container {
+                flex-direction: column;
+            }
+
+            .img-container img {
+                height: 15em;
+            }
+
+            .recipe-meta {
+                justify-content: flex-start;
+            }
+
+            .utensilio-item {
+                width: 4.875em;
+            }
+        }
+
+        /* ===== ESTILOS PARA COMENTÁRIOS (Visual da Ilustração) ===== */
+
+        .comentarios {
+            margin-top: 1.5em;
+        }
+
+        /* Container do Grid: Max 3 por linha */
+        #lista-comentarios {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(15em, 1fr));
+            gap: 1.5em;
+            margin-bottom: 2em;
+        }
+
+        /* O Card de Comentário (Visual Quadrado) */
+        .comentario-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            
+            height: 18em; /* Altura fixa para layout quadrado */
+            
+            gap: 0.5em;
+            padding: 1em;
+            border-radius: 0.5em;
+            background: #fff;
+            box-shadow: 0 0.25em 0.5em rgba(0,0,0,0.08);
+            border: 1px solid #f9e3c9;
+            position: relative;
+        }
+
+        .comentario-item img {
+            width: 4em;
+            height: 4em;
+            border-radius: 50%;
+            object-fit: cover;
+            flex-shrink: 0;
+            border: 1px solid #f39200;
+            margin-bottom: 0.5em;
+        }
+
+        .comentario-conteudo {
+            flex: 1;
+        }
+
+        .comentario-conteudo strong {
+            display: block;
+            margin-bottom: 0.1em;
+            font-size: 1.1em;
+            font-weight: 700;
+            color: #1a1a1a;
+        }
+
+        .comentario-conteudo p {
+            margin: 0.25em 0 0;
+            font-size: 0.9em;
+            line-height: 1.3em;
+            color: #555;
+            /* Garante que o texto se ajuste sem quebrar o layout */
+            overflow: hidden; 
+        }
+
+        /* Estrelas no Comentário Renderizado */
+        .stars {
+            color: #faa938; 
+            font-size: 1.2em;
+            margin-bottom: 0.5em;
+        }
+        
+        /* Estilos do Formulário */
+        #form-comentario {
+            background: #fffdf8;
+            padding: 1.5em;
+            border-radius: 0.625em;
+            box-shadow: 0 0.125em 0.375em rgba(0, 0, 0, 0.05);
+        }
+        
+        #form-comentario textarea {
+            width: 100%;
+            margin-bottom: 0.75em;
+            padding: 0.5em;
+            border-radius: 0.375em;
+            border: 1px solid #ddd;
+            font-family: 'Roboto', sans-serif;
+        }
+        
+        /* ===== Estilos para as Estrelas Interativas no Formulário ===== */
+
+        .rating-input-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1em;
+        }
+
+        .rating-label {
+            font-weight: bold;
+            margin-right: 0.5em;
+            color: #4a2e1b;
+        }
+        
+        .stars-form {
+            display: inline-flex;
+            flex-direction: row-reverse; /* Inverte a ordem */
+        }
+        
+        .stars-form input {
+            display: none; /* Esconde os radio buttons nativos */
+        }
+        
+        .stars-form label {
+            color: #ccc; /* Estrela vazia */
+            font-size: 1.8em;
+            cursor: pointer;
+            padding: 0 0.05em;
+            transition: color 0.2s;
+        }
+        
+        /* Efeito de Pintura: */
+        .stars-form input:checked ~ label,
+        .stars-form label:hover,
+        .stars-form label:hover ~ label {
+            color: #faa938; 
+        }
+        
+        #form-comentario button {
+            padding: 0.5em 0.75em;
+            background: #f39200;
+            color: white;
+            border: none;
+            border-radius: 0.375em;
+            cursor: pointer;
+        }
+
+        #form-comentario button:hover {
+            background: #e07c00;
+        }
+    </style>
 </head>
+
 <body>
-    
+    <header>
+        <h1 id="tituloReceita">Receita</h1>
+    </header>
+    <div class="container">
+        <a href="#" onclick="window.history.back()" id="btnVoltar" class="back-btn">← Voltar</a>
+
+        <div class="img-container">
+            <img id="imagemPrincipal" src="" alt="Imagem da receita">
+        </div>
+
+        <div class="recipe-meta" id="meta"></div>
+
+        <div class="utensilios">
+            <h3 style="margin:0;color:#f39200">Utensílios:</h3>
+            <div class="utensilios-grid" id="utensiliosGrid"></div>
+        </div>
+
+        <div class="info-container">
+            <div class="info-left">
+                <h3 style="margin-top:0;color:#f39200">Ingredientes:</h3>
+                <ul id="listaIngredientes"></ul>
+            </div>
+
+            <div class="info-right" id="modoPreparo">
+                <h3 style="margin-top:0;color:#f39200">Modo de preparo:</h3>
+            </div>
+        </div>
+
+        <div class="comentarios">
+            <h3 style="margin-top:0;color:#f39200">Avaliações e Comentários:</h3>
+            <div id="lista-comentarios"></div>
+
+            <h3 style="color:#f39200; margin-top: 1em;">Adicionar Comentário:</h3>
+            <form id="form-comentario">
+                <div class="rating-input-container">
+                    <span class="rating-label">Avaliação: </span>
+                    <div class="stars-form" id="starsForm">
+                        <input type="radio" id="star5" name="avaliacao" value="5" required /><label for="star5" title="5 estrelas">★</label>
+                        <input type="radio" id="star4" name="avaliacao" value="4" /><label for="star4" title="4 estrelas">★</label>
+                        <input type="radio" id="star3" name="avaliacao" value="3" /><label for="star3" title="3 estrelas">★</label>
+                        <input type="radio" id="star2" name="avaliacao" value="2" /><label for="star2" title="2 estrelas">★</label>
+                        <input type="radio" id="star1" name="avaliacao" value="1" /><label for="star1" title="1 estrela">★</label>
+                    </div>
+                </div>
+                                <textarea id="mensagem" placeholder="Escreva seu comentário sobre a receita..." required></textarea>
+
+                
+                <button type="submit">Adicionar Comentário</button>
+            </form>
+        </div>
+        </div>
+
+    <script src="receitasData.js"></script>
+    <script>
+    (function () {
+        const formComentario = document.getElementById('form-comentario');
+        const listaComentarios = document.getElementById('lista-comentarios');
+
+        if (!window.categorias) {
+            document.querySelector('.container').innerHTML = '<p style="padding:1.25em;background:#fff;border-radius:0.5em">Erro: dados não encontrados.</p>';
+            throw new Error('receitasData.js não carregado');
+        }
+
+        // --- FUNÇÕES DE PERSISTÊNCIA ---
+        function getLocalStorageKey(recipeId) {
+            // Cria uma chave única para o Local Storage (ex: 'comentarios_receita_sushi-salmao')
+            return `comentarios_receita_${recipeId}`;
+        }
+
+        function loadPersistentComments(recipeId, staticComments) {
+            const key = getLocalStorageKey(recipeId);
+            const savedComments = localStorage.getItem(key);
+            
+            if (savedComments) {
+                // 1. Se houver dados no Local Storage, use-os.
+                return JSON.parse(savedComments);
+            } else {
+                // 2. Se for a primeira vez, use os dados estáticos (o exemplo do Gabriel) como base
+                const initialComments = staticComments || [{
+                    usuario: "Gabriel Souza",
+                    texto: "Gostei do site, facilitou muito a minha vida agora que estou morando sozinha. Amei muito.",
+                    avaliacao: 4,
+                    foto: 'img/user-default.png'
+                }];
+                // E já salva essa base inicial
+                savePersistentComments(recipeId, initialComments);
+                return initialComments;
+            }
+        }
+
+        function savePersistentComments(recipeId, comments) {
+            const key = getLocalStorageKey(recipeId);
+            // Converte o objeto JavaScript para uma string JSON antes de salvar
+            localStorage.setItem(key, JSON.stringify(comments));
+        }
+        // --- FIM FUNÇÕES DE PERSISTÊNCIA ---
+
+
+        function buscarReceitaPorId(id) {
+            for (const key in window.categorias) {
+                const arr = window.categorias[key];
+                const encontrada = arr.find(r => r.id === id);
+                if (encontrada) return encontrada;
+            }
+            return null;
+        }
+
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get('r');
+        if (!id) {
+            document.querySelector('.container').innerHTML = '<p style="padding:1.25em;background:#fff;border-radius:0.5em">ID da receita não fornecido.</p>';
+            document.getElementById('tituloReceita').textContent = 'Receita inválida';
+            return;
+        }
+
+        const receita = buscarReceitaPorId(id);
+        if (!receita) {
+            document.querySelector('.container').innerHTML = '<p style="padding:1.25em;background:#fff;border-radius:0.5em">Receita não encontrada.</p>';
+            document.getElementById('tituloReceita').textContent = 'Receita não encontrada';
+            return;
+        }
+
+        // Carrega os comentários persistentes, substituindo o dado estático
+        receita.comentarios = loadPersistentComments(id, receita.comentarios);
+
+
+        // ===== FUNÇÃO DE RENDERIZAÇÃO NO NOVO FORMATO DE CARD =====
+        function renderizarComentarios() {
+            listaComentarios.innerHTML = receita.comentarios.map(c => `
+                <div class="comentario-item">
+                    <img src="${c.foto || 'img/user-default.png'}" alt="${c.usuario}">
+                    <div class="comentario-conteudo">
+                        <strong>${c.usuario}</strong>
+                        <div class="stars">${'★'.repeat(c.avaliacao)}${'☆'.repeat(5 - c.avaliacao)}</div>
+                        <p>${c.texto}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        // ===== Preenchendo dados da receita (Código original do usuário) =====
+        document.getElementById('tituloReceita').textContent = receita.nome;
+        document.getElementById('imagemPrincipal').src = receita.imagem || 'imgCategorias/default.jpg';
+        document.getElementById('imagemPrincipal').alt = receita.nome;
+
+        const ug = document.getElementById('utensiliosGrid');
+        ug.innerHTML = (receita.utensilios || []).map(u => `
+      <div class="utensilio-item">
+        <img src="${u.img || 'imgCategorias/itens/default.jpg'}" alt="${u.nome || ''}">
+        <p style="font-size:0.85em;margin:0.375em 0 0">${u.nome || ''}</p>
+      </div>
+    `).join('');
+
+        const listaIng = document.getElementById('listaIngredientes');
+        listaIng.innerHTML = (receita.ingredientes || []).map(i => `<li>${i}</li>`).join('');
+
+        const passos = Array.isArray(receita.preparo) ? receita.preparo : (receita.preparo ? [receita.preparo] : []);
+        document.getElementById('modoPreparo').innerHTML = '<h3 style="margin-top:0;color:#f39200">Modo de preparo:</h3>' + passos.map(p => `<p>${p}</p>`).join('');
+
+        renderizarComentarios(); // Exibe os comentários iniciais
+        
+        // ===== ADICIONAR COMENTÁRIO (Listener) =====
+        formComentario.addEventListener('submit', function(e){
+            e.preventDefault();
+            
+            // SIMULAÇÃO: Nome puxado pelo Backend
+            const nomeUsuarioLogado = "Usuário Logado"; 
+            
+            const mensagem = document.getElementById('mensagem').value.trim();
+            const avaliacaoInput = document.querySelector('.stars-form input:checked');
+            
+            if(!mensagem || !avaliacaoInput) {
+                alert("Por favor, escreva seu comentário e clique nas estrelas para avaliar.");
+                return;
+            }
+            
+            const avaliacao = parseInt(avaliacaoInput.value);
+
+            // 1. Adiciona o novo comentário ao array da receita
+            receita.comentarios.push({
+                usuario: nomeUsuarioLogado,
+                texto: mensagem,
+                avaliacao: avaliacao,
+                foto: 'img/user-default.png' 
+            });
+            
+            // 2. SALVA O ARRAY ATUALIZADO NO LOCAL STORAGE (PERSISTÊNCIA)
+            savePersistentComments(id, receita.comentarios);
+            
+            // 3. Renderiza novamente a lista
+            renderizarComentarios(); 
+            formComentario.reset(); // Limpa o formulário
+        });
+
+
+    })();
+    </script>
 </body>
+
 </html>

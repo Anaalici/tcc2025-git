@@ -1,0 +1,61 @@
+body {
+    color: white;
+    background-color: black;
+    padding: 20px;
+}
+
+.texto {
+    color: rgb(234, 233, 251);
+    padding: 15px;
+    font-size: 40px;
+
+}
+.texto1 {
+    font-size: 20px;
+    border:40px ;
+    padding: 15px;  
+    padding-left: 50px;
+    color:rgb(78, 78, 232) ;
+   
+}
+
+.imagem {
+    border-radius: 20px;
+    padding: 30px;
+}
+
+.divi {
+ font-size: 18px;
+ padding: 45px;
+ font-size: 20px;
+}
+
+.botao {
+    background-color: rgb(152, 152, 249);
+    font-size: 15px;
+    font-family: arial;
+    height: 40px;
+    width: 100px;
+    border-radius: 10px;
+}
+
+
+.botao:hover {
+    background-color: rgb(102, 38, 240);
+}
+
+.h2 {
+font-size: 30px;
+justify-content: center;
+text-align: center;
+padding: 20px;
+color: rgb(67, 67, 255);
+font-family: arial;
+
+}
+
+.h3 {
+    font-size: 20px;
+    font-family: arial;
+    text-align: center;
+}
