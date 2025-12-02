@@ -104,10 +104,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <a href="index.html"><img class="logo" src="./img/LogoTCC.png"></a>
                     <nav>
                         <ul class="menu">
-                            <li><a href="#home">Home</a></li>
-                            <li><a href="receitas.html">Receitas</a></li>
+                            <li><a href="index.php">Home</a></li>
+                            <li><a href="receitas.php">Receitas</a></li>
                             <li><a href="contato.php">Contato</a></li>
-                            <li><a href="#favoritos">Favoritad<span class="coracao"><i
+                            <li><a href="favoritados.php">Favoritad<span class="coracao"><i
                                             class="fas fa-heart"></i></span>s</a></li>
 
                                             <li class="toggle-control-item">
