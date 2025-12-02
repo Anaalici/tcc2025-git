@@ -87,8 +87,7 @@ CREATE TABLE `receita` (
   `utensilios` varchar(255) NOT NULL,
   `ingredientes` varchar(255) NOT NULL,
   `modoPreparo` varchar(255) NOT NULL,
-  `tempoMedio` varchar(50) NOT NULL,
-  `idCategoriaRec` int(11) NOT NULL
+  `tempoMedio` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -101,8 +100,7 @@ CREATE TABLE `tempero` (
   `idTempero` int(11) NOT NULL,
   `nomeTempero` varchar(50) NOT NULL,
   `utilidade` varchar(255) NOT NULL,
-  `beneficios` varchar(255) NOT NULL,
-  `idCategoriaTemp` int(11) NOT NULL
+  `beneficios` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -158,15 +156,13 @@ ALTER TABLE `contato`
 -- Índices de tabela `receita`
 --
 ALTER TABLE `receita`
-  ADD PRIMARY KEY (`idReceita`),
-  ADD KEY `idCategoriaRec` (`idCategoriaRec`);
+  ADD PRIMARY KEY (`idReceita`);
 
 --
 -- Índices de tabela `tempero`
 --
 ALTER TABLE `tempero`
-  ADD PRIMARY KEY (`idTempero`),
-  ADD KEY `idCategoriaTemp` (`idCategoriaTemp`);
+  ADD PRIMARY KEY (`idTempero`);
 
 --
 -- Índices de tabela `usuario`
@@ -242,8 +238,6 @@ ALTER TABLE `contato`
 --
 -- Restrições para tabelas `receita`
 --
-ALTER TABLE `receita`
-  ADD CONSTRAINT `receita_ibfk_1` FOREIGN KEY (`idCategoriaRec`) REFERENCES `categoriareceita` (`idCategoriaRec`);
 
 ALTER TABLE `usuario`
 ADD COLUMN `tokenRedefinicao` VARCHAR(255) NULL AFTER `senha`,
@@ -253,14 +247,12 @@ ADD COLUMN fotoPerfil VARCHAR(255) NULL;
 --
 -- Restrições para tabelas `tempero`
 --
-ALTER TABLE `tempero`
-  ADD CONSTRAINT `tempero_ibfk_1` FOREIGN KEY (`idCategoriaTemp`) REFERENCES `categoriatempero` (`idCategoriaTemp`);
-
   ALTER TABLE `receita`
-ADD COLUMN `urlFoto` VARCHAR(255) NULL AFTER `tempoMedio`;
+ADD COLUMN `urlFoto` VARCHAR(255) NULL AFTER `tempoMedio`,
+ADD COLUMN `dificuldade` VARCHAR(255) NULL AFTER `urlFoto`;
 
 ALTER TABLE `receita`
-ADD COLUMN `idUsuario` INT(11) NOT NULL AFTER `urlFoto`,
+ADD COLUMN `idUsuario` INT(11) NOT NULL AFTER `dificuldade`,
 ADD INDEX `fk_idUsuario` (`idUsuario`);
 COMMIT;
 

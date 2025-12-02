@@ -6,9 +6,8 @@ include 'conexao.php';
 
 // Variáveis de upload (Ajuste conforme seu ambiente)
 $upload_dir = 'imagens_receitas/'; 
-// CRUCIAL: AJUSTE ESTA URL para o caminho público real no seu XAMPP.
-// Exemplo: 'http://localhost/tccatual/tcc2025/git/imagens_receitas/'; 
-$base_url_imagens = 'http://seuservidor.com/' . $upload_dir; // <-- AJUSTAR AQUI
+// CRUCIAL: AJUSTADO PARA O SEU CAMINHO EXATO NO LOCALHOST
+$base_url_imagens = 'http://localhost/tccatual/tcc2025-git/imagens_receitas/'; // <-- CORRIGIDO AQUI!
 
 $msg_status = '';
 $msg_cor = '';
@@ -24,8 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($conexao) && !$conexao->conne
     $nomeReceita = trim($_POST['nome'] ?? '');
     $tempoMedio = trim($_POST['tempo'] ?? '');
     $dificuldade = trim($_POST['dificuldade'] ?? '');
-    $idCategoriaRec = trim($_POST['categoria'] ?? '');
-    $utensilios = trim($_POST['utensilios'] ?? ''); 
+    $utensilios = trim($_POST['utensilios'] ?? '');
     $ingredientes = trim($_POST['ingredientes'] ?? '');
     $modoPreparo = trim($_POST['preparo'] ?? '');
 
@@ -36,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($conexao) && !$conexao->conne
     $form_data = $_POST;
 
     // 2.1. Validação dos Campos OBRIGATÓRIOS
-    if (empty($nomeReceita) || empty($tempoMedio) || empty($dificuldade) || empty($idCategoriaRec) || empty($ingredientes) || empty($modoPreparo) || empty($_FILES['foto']['name'])) {
+    if (empty($nomeReceita) || empty($tempoMedio) || empty($dificuldade) || empty($ingredientes) || empty($modoPreparo) || empty($_FILES['foto']['name'])) {
         $msg_status = 'Por favor, preencha todos os campos obrigatórios (*), incluindo a foto.';
         $msg_cor = 'red';
     } else {
@@ -46,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($conexao) && !$conexao->conne
         $file = $_FILES['foto'];
         if ($file['error'] === UPLOAD_ERR_OK) {
             
-            // Tenta criar a pasta de destino se não existir (resolve "No such file or directory")
+            // 🎯 Tenta criar a pasta de destino se não existir
             if (!is_dir($upload_dir)) {
                 if (!mkdir($upload_dir, 0755, true)) {
                     $msg_status = 'Erro grave: A pasta de upload não existe e não pôde ser criada. Verifique as permissões.';
@@ -73,30 +71,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($conexao) && !$conexao->conne
         // 2.3. Inserção no Banco de Dados (Usando MySQLi Prepared Statements)
         if ($msg_cor !== 'red') {
             
-            // --- COMANDO SQL FINAL: SEM descricaoReceita ---
-            // As colunas de entrada são nome, ingredientes, preparo, tempo, urlFoto, idUsuario, idCategoriaRec
             $sql = "INSERT INTO receita (
-                nomeReceita, ingredientes, modoPreparo, tempoMedio, 
+                nomeReceita, ingredientes, modoPreparo, tempoMedio, utensilios, 
                 urlFoto, 
-                idUsuario, 
-                idCategoriaRec
+                idUsuario,
+                dificuldade
+                
             ) VALUES (
-                ?, ?, ?, ?, 
+                ?, ?, ?, ?, ?, 
                 ?, ?, ?
+                
             )";
 
             try {
+                // Prepara a query (MySQLi)
                 $stmt = $conexao->prepare($sql);
 
-                // Tipos de dados (7 parâmetros): 5 strings (s) + 2 integers (i)
-                $stmt->bind_param("sssssii", 
+                // Vincula os parâmetros. Agora são 7 (6 strings e 1 inteiro)
+                $stmt->bind_param("ssssssis", 
                     $nomeReceita, 
                     $ingredientes, 
                     $modoPreparo, 
                     $tempoMedio, 
+                    $utensilios, 
                     $urlFoto, 
-                    $idUsuario, 
-                    $idCategoriaRec
+                    $idUsuario,
+                    $dificuldade
                 );
 
                 // Executa a query
@@ -175,7 +175,7 @@ textarea{min-height:120px; resize:vertical; padding-top:0.75rem;}
                 <div class="error" id="errFoto" style="display:none;color:#b00020"></div>
             </div>
 
-            <div class="col">
+            <div class="col" style="margin-top: 3rem"> 
                 <label for="nome">Nome da receita *</label>
                 <input id="nome" name="nome" type="text" placeholder="Ex: Bolo de Cenoura" value="<?= htmlspecialchars($form_data['nome'] ?? '') ?>">
 
@@ -194,30 +194,14 @@ textarea{min-height:120px; resize:vertical; padding-top:0.75rem;}
                         </select>
                     </div>
                 </div>
-
-                <div class="row" style="margin-top:0.75rem">
-                    <div class="col">
-                        <label for="categoria">Categoria *</label>
-                        <select id="categoria" name="categoria">
-                            <option value="">Selecione</option>
-                            <option value="1" <?= ($form_data['categoria'] ?? '') == '1' ? 'selected' : '' ?>>Vegana</option>
-                            <option value="2" <?= ($form_data['categoria'] ?? '') == '2' ? 'selected' : '' ?>>Lanches</option>
-                            <option value="3" <?= ($form_data['categoria'] ?? '') == '3' ? 'selected' : '' ?>>Massa Doce</option>
-                            <option value="4" <?= ($form_data['categoria'] ?? '') == '4' ? 'selected' : '' ?>>Japonesa</option>
-                        </select>
-                    </div>
-
-                    <div style="width:140px;display:flex;align-items:flex-end">
-                        <button type="button" class="btn secondary" style="width:100%">Prévia</button>
-                    </div>
-                </div>
+                
             </div>
         </div>
 
         <div class="row">
             <div class="col">
                 <label for="utensilios">Utensílios</label>
-                <textarea id="utensilios" name="utensilios" placeholder="Não será salvo no BD, apenas para sua referência"><?= htmlspecialchars($form_data['utensilios'] ?? '') ?></textarea>
+                <textarea id="utensilios" name="utensilios"><?= htmlspecialchars($form_data['utensilios'] ?? '') ?></textarea>
             </div>
 
             <div class="col">
@@ -253,12 +237,11 @@ textarea{min-height:120px; resize:vertical; padding-top:0.75rem;}
 
         if (file) {
             const reader = new FileReader();
-            reader.onload = e => {
-                previewImg.src = e.target.result;
-                previewImg.style.display = 'block';
-                previewPlaceholder.style.display = 'none';
-            };
-            reader.readAsDataURL(file);
+            const url = URL.createObjectURL(file); 
+            
+            previewImg.src = url;
+            previewImg.style.display = 'block';
+            previewPlaceholder.style.display = 'none';
         } else {
             previewImg.style.display = 'none';
             previewPlaceholder.style.display = 'block';

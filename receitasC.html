@@ -210,7 +210,7 @@
                 
                 // CRÍTICO: Ajusta o botão para redirecionar para a criação de receita JÁ COM a categoria pré-selecionada.
                 document.querySelector('.add-btn').onclick = function() {
-                    window.location.href = `criarReceita.html?cat=${categoriaUrl}`;
+                    window.location.href = `criarReceita.php?cat=${categoriaUrl}`;
                 };
             }
 
@@ -262,7 +262,7 @@
                         <path d="M12.1 8.64c-1.44-1.72-4.12-1.72-5.56 0a3.93 3.93 0 000 5.28L12 19.4l5.46-5.48a3.93 3.93 0 000-5.28c-1.44-1.72-4.12-1.72-5.36 0z"/>
                     </svg>
                 </div>
-                <a href="receitas.html?r=${encodeURIComponent(r.id)}">
+                <a href="receitas.php?r=${encodeURIComponent(r.id)}">
                     <img src="${r.imagem}" alt="${r.nome}">
                     <div class="card-content">
                     <h3>${r.nome}</h3>
