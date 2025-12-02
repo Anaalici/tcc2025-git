@@ -8,9 +8,11 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="style2.css">
     <link rel="icon" href="./img/favicon.png" type="image/png">
+    
 </head>
 <body>
     
+
      <section id="home">
         <header id="main-header">
             <div class="container">
@@ -19,7 +21,6 @@
                     <nav>
                         <ul class="menu">
                             <li><a href="#home">Home</a></li>
-                            <li><a href="receitas.html">Receitas</a></li>
                             <li><a href="contato.php">Contato</a></li>
                             <li><a href="favoritados.html">Favoritad<span class="coracao"><i
                                             class="fas fa-heart"></i></span>s</a></li>
@@ -58,14 +59,73 @@
     <section id="home">
         <div class="slider">
             <div class="slides">
-                <img class="slide" src="./img/banner.png" alt="foto1">
-                <img class="slide" src="./img/cupcakeC.png" alt="foto2">
-                <img class="slide" src="./img/pizza.png" alt="foto3">
-                <img class="slide" src="./img/frango.png" alt="foto4">
-                <img class="slide" src="./img/banner.png" alt="foto1">
+                <img class="slide" src="./img/bannerT.png" alt="foto1">
+                <img class="slide" src="./img/frangoT.png" alt="foto2">
+                <img class="slide" src="./img/carneT.png" alt="foto3">
+                <img class="slide" src="./img/saladaT.jpg" alt="foto4">
+                <img class="slide" src="./img/bannerT.png" alt="foto1">
             </div>
         </div>
     </section>
+
+    <section id="destaque">
+        <h2 class="hallo">Temperos Naturais</h2>
+         <div class="cards-container-tempero">
+            <a href="biscoito.html" class="card-tempero">
+                <img src="imgCategorias/manjericao.webp" alt="biscoito">
+                <p>Manjericão</p>
+            </a>
+
+            <a href="almoco-rapido.html" class="card-tempero">
+                <img src="imgCategorias/alecrim.png" alt="Receitas para almoço rápido">
+                <p>Alecrim</p>
+            </a>
+
+            <a href="chocotone.html" class="card-tempero">
+                <img src="imgCategorias/cebolinha.png" alt="Receitas de sobremesas fáceis">
+                <p>Cebolinha</p>
+            </a>
+
+            <a href="fit.html" class="card-tempero">
+                <img src="imgCategorias/louro.png" alt="Receitas fit e saudáveis">
+                <p>Louro</p>
+            </a>
+
+            <a href="almoco-domingo.html" class="card-tempero">
+                <img src="imgCategorias/coentro.png" alt="Receitas para almoço de domingo">
+                <p>Coentro</p>
+            </a>
+        </div>
+    </section>
     
+        <section id="pesquisa">
+        <div class="pesquisameio">
+            <h2 class="h2search">O que você quer procurar hoje?</h2>
+            <div class="pesquisa">
+                <input type="text" id="meuInput" placeholder="Pesquisar tempero">
+            </div>
+            <a href="#" class="botaoEnviarTempero">Pesquisar</a>
+        </div>
+    </section>
+
+     <center>
+        <section id="categoria">
+            <div class="receitas">
+                <a href="receitasC.html?cat=japonesa" class="card1-tempero">
+                    <img src="imgCategorias/bovino.avif" alt="Bovina">
+                </a>
+                <a href="receitasC.html?cat=vegana" class="card1-tempero">
+                    <img src="imgCategorias/aves.png" alt="alface">
+                </a>
+                <a href="receitasC.html?cat=massadoce" class="card1-tempero">
+                    <img src="imgCategorias/peixe.jpg" alt="panqueca">
+                </a>
+                <a href="receitasC.html?cat=lanches" class="card1-tempero">
+                    <img src="imgCategorias/salada.png  " alt="lanche natural">
+                </a>
+            </div>
+        </section>
+
+    <script src="script.js" defer></script>
 </body>
 </html>

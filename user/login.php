@@ -56,7 +56,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../user/user.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    
+        <link rel="icon" href="../img/favicon.png" type="image/png">
+
     <script src="mascaras.js" defer></script> 
     
     <title>Login - Receitas de Mestre</title>

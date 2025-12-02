@@ -1,6 +1,4 @@
-body {
-    background-color: #FCF8F3;
-}
+
 
 #home {
     display: flex;
@@ -157,9 +155,8 @@ html {}
     height: 1em;
 }
 
-
 .botaoEnviar {
-    margin-left: 24em;
+       margin-left: 24em;
     margin-top: -3.4em;
     display: flex;
     justify-content: center;
@@ -170,6 +167,22 @@ html {}
     background-color: #f39200;
     color: #fff !important;
     border-radius: 1em;
+    cursor: pointer; 
+}
+
+
+.botaoEnviarTempero {
+    margin-left: 24em;
+    margin-top: -3.4em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 6em;
+    height: 2.4em;
+    font-size: 1em;
+    background-color: #3e724d;
+    color: #fff !important;
+    border-radius: 1em;
     cursor: pointer;
 }
 
@@ -177,7 +190,6 @@ html {}
 .receitas {
     display: flex;
     justify-content: center;
-    background-color: #000;
     height: 23em;
     width: 9 0em;
     border-radius: 1em;
@@ -185,7 +197,6 @@ html {}
     flex-wrap: wrap;
     gap: 1em;
     padding: 2em;
-    background-color: #FCF8F3;
     margin-bottom: 5em;
 }
 
@@ -239,12 +250,12 @@ html {}
 }
 
 .card1:hover::before {
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(218, 121, 11, 0.603);
 }
 
 .card1:hover::after {
     opacity: 1;
-}
+}   
 
 .card1:nth-child(1)::after {
     content: "Japonesa";
@@ -450,4 +461,125 @@ html {}
 .utensilios img:hover {
     transform: scale(1.05);
     box-shadow: 0 0 1em rgba(0,0,0,0.2);
+}
+
+/*Temperos*/
+.hallo {
+  padding: 3em 0 0 2em;
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  color: #71350B;
+  margin-top: 1em;
+  font-size: 1.3em;
+}
+
+.cards-container-tempero {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1em;
+  padding: 2em;
+}
+
+.card-tempero {
+  height: 20em;
+  width: 18em;
+  text-align: center;
+  padding: 1em;
+  border-radius: 1.25em;
+  background-color: #fff;
+  text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-tempero img {
+  width: 15em;
+  height: 15em;
+  object-fit: cover;
+  border-radius: 0.5em;
+}
+
+.card-tempero p {
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  color: #3e724d;
+  margin-top: 1em;
+  font-size: 1em;
+}
+
+.card-tempero:hover {
+  transform: translateY(-0.3em);
+  box-shadow: 0 0.5em 1em rgba(0, 0, 0, 0.15);
+}
+
+.card1-tempero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 18em;
+    height: 19em;
+    padding: 1em;
+    border-radius: 3em;
+    background-color: #fff;
+    text-decoration: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card1-tempero img {
+    width: 17em;
+    height: 13em;
+    object-fit: cover;
+    border-radius: 2em;
+}
+
+.card1-tempero:hover {
+    transform: translateY(-0.3em);
+    box-shadow: 0 0.5em 1em rgba(0, 0, 0, 0.15);
+}
+
+.card1-tempero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0);
+    transition: background-color 0.4s ease;
+    border-radius: 2em;
+    z-index: 1;
+}
+
+.card1-tempero::after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 1.2em;
+    font-weight: bold;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 2;
+}
+
+.card1-tempero:hover::before {
+    background-color: rgba(8, 68, 16, 0.603);
+}
+
+.card1-tempero:hover::after {
+    opacity: 1;
+}   
+
+.card1-tempero:nth-child(1)::after {
+    content: "Bovino";
+}
+.card1-tempero:nth-child(2)::after {
+    content: "Aves";
+}
+
+.card1-tempero:nth-child(3)::after {
+    content: "Frutos do Mar";
+}
+
+.card1-tempero:nth-child(4)::after {
+    content: "Salada";
 }

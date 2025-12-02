@@ -79,14 +79,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <input type="text" name="fakeuser" autocomplete="username" style="display:none">
             <input type="password" name="fakepass" autocomplete="new-password" style="display:none">
         
-            <input class="inputLogin" type="text" name="nomeUsuario" placeholder="Username" required autocomplete="off">
+            <input class="inputLogin" type="text" name="nomeUsuario" placeholder="User" required autocomplete="off">
             <input class="inputLogin" type="date" name="dataNasc" required autocomplete="off">
-            <input class="inputLogin" type="text" id="cpf" name="cpf" maxlength="14" placeholder="CPF (000.000.000-00)" required autocomplete="off"> 
+            <input class="inputLogin" type="text" id="cpf" name="cpf" maxlength="14" placeholder="000.000.000-00" required autocomplete="off"> 
             <input class="inputLogin" type="email" name="email" placeholder="E-mail" required autocomplete="off">
-            <input class="inputLogin" type="text" id="contato" name="contato" maxlength="15" placeholder="Telefone (DDD) 00000-0000" required autocomplete="off"> 
+            <input class="inputLogin" type="text" id="contato" name="contato" maxlength="15" placeholder="(00) 00000-0000" required autocomplete="off"> 
 
             <div class="input-group">
-                <input class="inputLogin" type="password" id="senha" name="senha" placeholder="Senha (Mínimo 8 dígitos)" required autocomplete="new-password">
+                <input class="inputLogin" type="password" id="senha" name="senha" placeholder="Senha" required autocomplete="new-password">
                 <span toggle="#senha" class="fas fa-eye toggle-password" onclick="mostrarOcultarSenha(this)"></span>
             </div>
             

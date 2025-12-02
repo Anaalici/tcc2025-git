@@ -40,7 +40,7 @@ body {
 }
 
 .h2 {
-    margin: 0 0 0 1em;
+    margin: 0 0 0 1.5em;
     color: #000;
     font-size: 4em;
     font-family: "Roboto", sans-serif;
@@ -49,7 +49,7 @@ body {
 }
 
 .icons-container {
-    margin: 1em 0 1em 7em;
+    margin: 1em 0 1em 9em;
     gap: 2em;
 }
 
@@ -62,18 +62,9 @@ form {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1em;
-}
+    }
 
-.inputLogin {/*
-    
-    white-space: nowrap;
-    height: 3.5em;
-    padding-left: 1em;
-    width: 25em;
-    color: #7b7b7b;
-    border: 0;
-    background-color: #fff0d9;*/
+.inputLogin {
     white-space: nowrap;
     height: 3.5em;
     padding-left: 1em;
@@ -122,7 +113,7 @@ form {
     align-items: center;
     text-decoration: underline;
     font-weight: 200;
-    margin-left: 7em;
+    margin-right: 18.3em;
 }
 
 .mostrar-senha {
@@ -283,16 +274,17 @@ form {
 
 .input-group {
     position: relative;
-    width: 100%; 
-    margin-bottom: 20px; /* Espaçamento padrão para todos os inputs */
+    width: 26em; 
 }
 
-/* 2. Garante que o input preencha o grupo e tenha padding suficiente para o ícone */
 .input-group .inputLogin {
     width: 100%; 
-    /* Ajustado: Aumentar o padding se o ícone estiver muito colado */
     padding-right: 45px !important; 
     box-sizing: border-box; 
+}
+
+.termos-aceite {
+    margin-right: 13.4em;
 }
 
 /* 3. Estiliza e posiciona o ícone do olho */
