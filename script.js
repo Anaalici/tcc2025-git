@@ -1,4 +1,4 @@
-// Carrossel do banner inicial - (MANTIDO FORA DO DOMContentLoaded, COMO ESTAVA)
+// Carrossel do banner inicial
 const slides = document.querySelector('.slides');
 const slideElements = document.querySelectorAll('.slide');
 const totalSlides = slideElements.length;
@@ -19,7 +19,10 @@ function showNextSlide() {
   }
 }
 
-setInterval(showNextSlide, 9000);
+if (slides) { // Garante que só chame o setInterval se o elemento existir (página index)
+    setInterval(showNextSlide, 9000);
+}
+
 
 // Evento de Scroll para o Header
 window.addEventListener("scroll", function () {
@@ -47,13 +50,17 @@ window.onload = () => {
     }
 };
 
-// Objeto de Receitas (MANTIDO, PODE SER REMOVIDO SE USAR RECEITASDATA.JS)
+// Objeto de Receitas (MANTIDO)
 const receitas = [
     // ... seu array de receitas ...
 ];
 
 
-// --- LÓGICA PRINCIPAL (Carrossel Vistas, Busca e NOVO TOGGLE) ---
+// Variável que determina o nome da página atual
+const currentPage = window.location.pathname.split('/').pop();
+
+
+// --- LÓGICA PRINCIPAL (DOMContentLoaded) ---
 document.addEventListener("DOMContentLoaded", () => {
 
     // Carrossel do receitas mais vistas (MANTIDO)
@@ -98,40 +105,37 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     
     
-    // --- NOVO CÓDIGO: LÓGICA DO TOGGLE DE DESLIZAR ---
+    // --- NOVO CÓDIGO: LÓGICA DO TOGGLE DE DESLIZAR (CORRIGIDA) ---
     const toggleElement = document.getElementById('page-toggle');
+    const utensilsState = toggleElement ? toggleElement.querySelector('[data-view="utensils"]') : null;
+    const recipesState = toggleElement ? toggleElement.querySelector('[data-view="recipes"]') : null;
+
 
     if (toggleElement) {
-        toggleElement.addEventListener('click', function() {
-            // CRÍTICO: Alterna a classe que o CSS usa para aplicar o 'transform: translateX'
-            this.classList.toggle('utensils-view-active'); 
-
-            const isUtensilsActive = this.classList.contains('utensils-view-active');
+        
+        // 1. Define o estado visual inicial com base na URL
+        if (currentPage === 'temperos.html') {
+            toggleElement.classList.add('utensils-view-active');
+            if (utensilsState) utensilsState.classList.add('active');
+            if (recipesState) recipesState.classList.remove('active');
+        } else {
+            toggleElement.classList.remove('utensils-view-active');
+            if (utensilsState) utensilsState.classList.remove('active');
+            if (recipesState) recipesState.classList.add('active'); 
+        }
+        
+        // 2. Adiciona o listener de clique
+        toggleElement.addEventListener('click', function(e) {
+            e.preventDefault(); 
             
-            // Seleciona os containers de estado (ícones)
-            const recipesState = toggleElement.querySelector('[data-view="recipes"]');
-            const utensilsState = toggleElement.querySelector('[data-view="utensils"]');
-
-
-            if (isUtensilsActive) {
-                // ESTADO ATIVADO: MODO UTENSÍLIOS
+            // 3. AÇÃO DE NAVEGAÇÃO BASEADA NA URL ATUAL
+            if (currentPage === 'temperos.html') {
+                // Se estamos em TEMPEROS, o clique deve IR PARA RECEITAS
+                window.location.href = 'index.html'; 
                 
-                // Troca visual dos ícones
-                recipesState.classList.remove('active');
-                utensilsState.classList.add('active');
-
-window.location.href = 'temperos.html';
-
-
-            } else {
-                // ESTADO DESATIVADO: MODO RECEITAS
-                
-                // Troca visual dos ícones
-                utensilsState.classList.remove('active');
-                recipesState.classList.add('active');
-                
-                // LÓGICA DE NAVEGAÇÃO: Adicione o redirecionamento aqui
-                 window.location.href = 'index.html';
+            } else { 
+                // Se estamos em INDEX (ou outra página), o clique deve IR PARA TEMPEROS
+                window.location.href = 'temperos.html'; 
             }
         });
     }

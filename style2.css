@@ -1,6 +1,6 @@
 
 
-#home {
+#hoF {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -327,6 +327,16 @@ html {}
     padding: 0 0 0 1em;
 }
 
+.titulo-tempero {
+    color: #3e724d;
+    font-family: Arial, sans-serif;
+    font-size: 2.5em;
+    margin-top: 2em;
+    line-height: 1.3em;
+    text-align: left;
+    padding: 0 0 0 1em;
+}
+
 .titulo:hover {
     color: #faa938 !important;
 }
@@ -354,6 +364,20 @@ html {}
     color: #fff !important;
 }
 
+.btn-tempero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #3e724d;
+    width: 7em;
+    height: 2em;
+    border-radius: 1em;
+    justify-content: center;
+    margin-top: 2em;
+    border: none;
+    margin-left: -41em;
+    color: #fff !important;
+}
 
 
 /*Aba contato*/

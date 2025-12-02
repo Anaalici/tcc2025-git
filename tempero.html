@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Tempero — Orégano</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --orange: #f39200;
+    --green: #4caf50;
+    --bg: #faf7f0;
+    --dark: #1d1b17;
+    --white: #ffffff;
+}
+
+/* ===== BASE ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--bg);
+    font-family: 'Roboto', sans-serif;
+    color: var(--dark);
+    overflow-x: hidden;
+}
+
+/* ===== HERO ===== */
+.hero {
+    width: 100%;
+    height: 90vh;
+    background: 
+        linear-gradient(to bottom, rgba(0,0,0,0.15), rgba(0,0,0,0.65)),
+        url("imgTempero/oregano.jpg") center/cover no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 3em;
+    color: #fff;
+}
+
+.hero h1 {
+    font-size: 4.2em;
+    font-weight: 700;
+    margin-bottom: 0.3em;
+}
+
+.hero p {
+    font-size: 1.7em;
+    max-width: 35em;
+    line-height: 1.5em;
+    font-weight: 300;
+}
+
+/* ===== CONTAINER ===== */
+.container {
+    max-width: 70em;
+    margin: 4em auto;
+    padding: 0 2em;
+}
+
+/* ===== TÍTULOS ===== */
+.section-title {
+    font-size: 2.8em;
+    margin-bottom: 0.6em;
+    color: var(--orange);
+    font-weight: 700;
+}
+
+/* ===== TEXTO ===== */
+.section-text {
+    font-size: 1.5em;
+    line-height: 1.7em;
+    margin-bottom: 2em;
+}
+
+/* ===== LISTAS ===== */
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+ul li {
+    font-size: 1.4em;
+    padding: 0.4em 0;
+    position: relative;
+    padding-left: 1.2em;
+}
+
+/* Marcador estilizado */
+ul li::before {
+    content: "";
+    width: 0.4em;
+    height: 0.4em;
+    background: var(--green);
+    border-radius: 50%;
+    position: absolute;
+    left: 0;
+    top: 0.7em;
+}
+
+/* ===== CARDS ===== */
+.card {
+    width: 100%;
+    background: var(--white);
+    padding: 2em;
+    border-radius: 1em;
+    margin-bottom: 2.5em;
+    box-shadow: 0 0.7em 1.5em rgba(0,0,0,0.08);
+}
+
+/* ===== TAGS — USO ===== */
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+    margin-top: 1em;
+}
+
+.tag {
+    background: var(--green);
+    color: #fff;
+    padding: 0.6em 1.2em;
+    border-radius: 0.8em;
+    font-size: 1.2em;
+}
+
+/* ===== RESPONSIVO ===== */
+@media (max-width: 50em) {
+    .hero {
+        height: 70vh;
+        padding: 2em;
+    }
+    .hero h1 {
+        font-size: 3em;
+    }
+    .hero p {
+        font-size: 1.2em;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+    <h1>Orégano</h1>
+    <p>Uma erva aromática e intensa, versátil e presente em diversas culinárias ao redor do mundo.</p>
+</section>
+
+<!-- ===== DESCRIÇÃO ===== -->
+<div class="container">
+    <div class="card">
+        <h2 class="section-title">Descrição Completa</h2>
+        <p class="section-text">
+            O orégano é uma erva seca de aroma marcante, muito utilizada em pratos mediterrâneos,
+            italianos e brasileiros. Seu sabor levemente picante e herbal acrescenta profundidade a
+            massas, carnes, molhos, saladas e pizzas. Também pode ser usado fresco, embora seco seja
+            mais comum.
+        </p>
+    </div>
+
+    <!-- ===== COMO USAR ===== -->
+    <div class="card">
+        <h2 class="section-title">Como e Onde Usar</h2>
+        <p class="section-text">
+            O orégano funciona tanto como tempero final quanto na preparação. Ele libera mais aroma quando aquecido,
+            por isso combina bem com assados, molhos e massas quentes.
+        </p>
+
+        <div class="tags">
+            <span class="tag">Carnes</span>
+            <span class="tag">Molhos</span>
+            <span class="tag">Massas</span>
+            <span class="tag">Pizzas</span>
+            <span class="tag">Legumes</span>
+            <span class="tag">Frango</span>
+            <span class="tag">Saladas</span>
+        </div>
+    </div>
+
+    <!-- ===== BENEFÍCIOS ===== -->
+    <div class="card">
+        <h2 class="section-title">Benefícios</h2>
+        <ul>
+            <li>Possui compostos antioxidantes importantes.</li>
+            <li>Ajuda na digestão de alimentos gordurosos.</li>
+            <li>Realça o sabor da comida, reduzindo necessidade de sal.</li>
+            <li>Tem propriedades antimicrobianas naturais.</li>
+        </ul>
+    </div>
+
+    <!-- ===== MALEFÍCIOS ===== -->
+    <div class="card">
+        <h2 class="section-title">Malefícios</h2>
+        <ul>
+            <li>Em excesso, pode deixar o prato amargo.</li>
+            <li>Pode irritar o estômago sensível.</li>
+            <li>Causa alergia em raros casos.</li>
+        </ul>
+    </div>
+</div>
+
+</body>
+</html>

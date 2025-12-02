@@ -120,6 +120,15 @@ input:checked+.slidel-toggle .circle {
 }
 
 .menu {
+  margin-left: 1.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.6em;
+}
+
+.menu-tempero {
+  margin-left: 7em;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -159,6 +168,11 @@ header ul li a {
 .coracao {
   color: #faa938;
 }
+
+.coracao-tempero {
+  color: #3e724d;
+}
+
 
 
 .container-card {
@@ -333,6 +347,8 @@ a {
     align-items: center;
     justify-content: center;
 }
+
+
 
 
 .hallo {

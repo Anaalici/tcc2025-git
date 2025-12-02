@@ -54,7 +54,7 @@ window.categorias = {
             nome: 'Strogonoff Vegano',
             dificuldade: 'Fácil',
             tempo: '25 min',
-            imagem: 'imgCategoriasVeg/vegStrogonoff.jpg',
+            imagem: 'imgCategorias/strogonoffvegano.jpg',
             utensilios: [{ nome: 'Panela', img: 'imgCategoriasVeg/panela.jpg' }],
             ingredientes: ["Cogumelos", "Creme vegetal", "Mostarda", "Arroz"],
             preparo: ["Refogue os cogumelos.", "Adicione creme vegetal e tempere.", "Sirva com arroz."]
@@ -64,7 +64,7 @@ window.categorias = {
             nome: 'Hambúrguer Vegano',
             dificuldade: 'Médio',
             tempo: '40 min',
-            imagem: 'imgCategoriasVeg/veganBurger.jpg',
+            imagem: 'imgCategorias/hamburguervagn.jpg',
             utensilios: [{ nome: 'Frigideira', img: 'imgCategoriasVeg/frigideira.jpg' }],
             ingredientes: ["Grão-de-bico", "Aveia", "Temperos", "Pão vegano"],
             preparo: ["Processe os ingredientes.", "Modele os hambúrgueres.", "Frite ou asse até dourar.", "Monte no pão."]
@@ -74,7 +74,7 @@ window.categorias = {
             nome: 'Panqueca Vegana',
             dificuldade: 'Fácil',
             tempo: '20 min',
-            imagem: 'imgCategoriasVeg/panquecaVegana.jpg',
+            imagem: 'imgCategorias/panquecavegana.jpg',
             utensilios: [{ nome: 'Frigideira', img: 'imgCategoriasVeg/frigideira.jpg' }],
             ingredientes: ["Farinha", "Leite vegetal", "Fermento", "Adoçante"],
             preparo: ["Misture os ingredientes até ficar homogêneo.", "Cozinhe em frigideira quente.", "Sirva com frutas ou melado."]
@@ -84,7 +84,7 @@ window.categorias = {
             nome: 'Salad Bowl Proteico',
             dificuldade: 'Fácil',
             tempo: '15 min',
-            imagem: 'imgCategoriasVeg/saladBowl.jpg',
+            imagem: 'imgCategorias/saladavegana.jpg',
             utensilios: [{ nome: 'Tigela', img: 'imgCategoriasVeg/tigela.jpg' }],
             ingredientes: ["Folhas verdes", "Quinoa", "Grão-de-bico", "Molho tahine"],
             preparo: ["Cozinhe a quinoa.", "Misture os ingredientes.", "Tempere e sirva."]
@@ -94,7 +94,7 @@ window.categorias = {
             nome: 'Espaguete ao Molho de Tomate e Tofu',
             dificuldade: 'Médio',
             tempo: '35 min',
-            imagem: 'imgCategoriasVeg/espagueteTofu.jpg',
+            imagem: 'imgCategorias/espaguete.jpg',
             utensilios: [{ nome: 'Panela', img: 'imgCategoriasVeg/panela.jpg' }],
             ingredientes: ["Espaguete", "Tomates", "Tofu", "Alho", "Manjericão"],
             preparo: ["Cozinhe a massa.", "Refogue o molho com tofu.", "Misture e sirva."]
@@ -104,7 +104,17 @@ window.categorias = {
             nome: 'Bolinhos de Grão-de-Bico',
             dificuldade: 'Médio',
             tempo: '30 min',
-            imagem: 'imgCategoriasVeg/bolinhosGrão.jpg',
+            imagem: 'imgCategorias/bolinhovagano.jpg',
+            utensilios: [{ nome: 'Assadeira', img: 'imgCategoriasVeg/assadeira.jpg' }],
+            ingredientes: ["Grão-de-bico", "Farinha", "Temperos"],
+            preparo: ["Amasse o grão-de-bico.", "Modele e asse ou frite.", "Sirva com molho."]
+        },
+            {
+            id: 'vegan-pizza',
+            nome: 'Pizza Vegana',
+            dificuldade: 'Médio',
+            tempo: '50 min',
+            imagem: 'imgCategorias/pizzavegana.jpg',
             utensilios: [{ nome: 'Assadeira', img: 'imgCategoriasVeg/assadeira.jpg' }],
             ingredientes: ["Grão-de-bico", "Farinha", "Temperos"],
             preparo: ["Amasse o grão-de-bico.", "Modele e asse ou frite.", "Sirva com molho."]
@@ -114,10 +124,10 @@ window.categorias = {
     massadoce: [
         {
             id: 'boloChocolate',
-            nome: 'Bolo de Chocolate',
+            nome: 'Bolo de Chocolate com Morango',
             dificuldade: 'Médio',
             tempo: '20 min',
-            imagem: 'imgCategoriasVeg/bolinhosGrão.jpg',
+            imagem: 'imgCategorias/boloChoco.webp   ',
             utensilios: [{ nome: 'Assadeira', img: 'imgCategoriasVeg/assadeira.jpg' }],
             ingredientes: ["Grão-de-bico", "Farinha", "Temperos"],
             preparo: ["Amasse o grão-de-bico.", "Modele e asse ou frite.", "Sirva com molho."]
@@ -128,11 +138,34 @@ window.categorias = {
             nome: 'Bolo de Cenoura',
             dificuldade: 'Médio',
             tempo: '20 min',
-            imagem: 'imgCategoriasVeg/bolinhosGrão.jpg',
+            imagem: 'imgCategorias/boloCenoura.jpg',
+            utensilios: [{ nome: 'Assadeira', img: 'imgCategoriasVeg/assadeira.jpg' }],
+            ingredientes: ["Grão-de-bico", "Farinha", "Temperos"],
+            preparo: ["Amasse o grão-de-bico.", "Modele e asse ou frite.", "Sirva com molho."]
+        },
+
+                {
+            id: 'tortaLimao',
+            nome: 'Torta de Limão',
+            dificuldade: 'Médio',
+            tempo: '20 min',
+            imagem: 'imgCategorias/tortaLimoa.jpg',
+            utensilios: [{ nome: 'Assadeira', img: 'imgCategoriasVeg/assadeira.jpg' }],
+            ingredientes: ["Grão-de-bico", "Farinha", "Temperos"],
+            preparo: ["Amasse o grão-de-bico.", "Modele e asse ou frite.", "Sirva com molho."]
+        },
+
+                        {
+            id: 'tortaMorango',
+            nome: 'Torta de Morango',
+            dificuldade: 'Médio',
+            tempo: '20 min',
+            imagem: 'imgCategorias/tortaMorango.jpg',
             utensilios: [{ nome: 'Assadeira', img: 'imgCategoriasVeg/assadeira.jpg' }],
             ingredientes: ["Grão-de-bico", "Farinha", "Temperos"],
             preparo: ["Amasse o grão-de-bico.", "Modele e asse ou frite.", "Sirva com molho."]
         }
+        
     ],
 
     lanches: [
@@ -141,7 +174,7 @@ window.categorias = {
             nome: 'Pizza de Frango',
             dificuldade: 'Médio',
             tempo: '20 min',
-            imagem: 'imgCategoriasVeg/bolinhosGrão.jpg',
+            imagem: 'imgCategorias/pizaz.jpg',
             utensilios: [{ nome: 'Assadeira', img: 'imgCategoriasVeg/assadeira.jpg' }],
             ingredientes: ["Grão-de-bico", "Farinha", "Temperos"],
             preparo: ["Amasse o grão-de-bico.", "Modele e asse ou frite.", "Sirva com molho."]
@@ -152,32 +185,283 @@ window.categorias = {
             nome: 'Lanche Natural',
             dificuldade: 'Médio',
             tempo: '20 min',
-            imagem: 'imgCategoriasVeg/bolinhosGrão.jpg',
+            imagem: 'imgCategorias/lanche.jpg',
+            utensilios: [{ nome: 'Assadeira', img: 'imgCategoriasVeg/assadeira.jpg' }],
+            ingredientes: ["Grão-de-bico", "Farinha", "Temperos"],
+            preparo: ["Amasse o grão-de-bico.", "Modele e asse ou frite.", "Sirva com molho."]
+        },
+                {
+            id: 'lanche',
+            nome: 'Pão de Queijo',
+            dificuldade: 'Médio',
+            tempo: '20 min',
+            imagem: 'imgCategorias/paoq.webp',
+            utensilios: [{ nome: 'Assadeira', img: 'imgCategoriasVeg/assadeira.jpg' }],
+            ingredientes: ["Grão-de-bico", "Farinha", "Temperos"],
+            preparo: ["Amasse o grão-de-bico.", "Modele e asse ou frite.", "Sirva com molho."]
+        },
+
+                {
+            id: 'lanche',
+            nome: 'Pão Recheado',
+            dificuldade: 'Médio',
+            tempo: '20 min',
+            imagem: 'imgCategorias/paoRech.jpg',
+            utensilios: [{ nome: 'Assadeira', img: 'imgCategoriasVeg/assadeira.jpg' }],
+            ingredientes: ["Grão-de-bico", "Farinha", "Temperos"],
+            preparo: ["Amasse o grão-de-bico.", "Modele e asse ou frite.", "Sirva com molho."]
+        },
+
+                {
+            id: 'lanche',
+            nome: 'Coxinha de Frango',
+            dificuldade: 'Médio',
+            tempo: '20 min',
+            imagem: 'imgCategorias/coximh.webp',
             utensilios: [{ nome: 'Assadeira', img: 'imgCategoriasVeg/assadeira.jpg' }],
             ingredientes: ["Grão-de-bico", "Farinha", "Temperos"],
             preparo: ["Amasse o grão-de-bico.", "Modele e asse ou frite.", "Sirva com molho."]
         }
-    ]
-};
+    ],
 
-window.receitas = {
-    bolocenoura: {
-        id: "bolocenoura",
-        titulo: "Bolo de Cenoura Fofinho",
-        imagem: "img/bolocenoura.jpg",
-        ingredientes: [
-            "3 cenouras médias",
-            "3 ovos",
-            "1 xícara de óleo",
-            "2 xícaras de farinha",
-            "2 xícaras de açúcar",
-            "1 colher (sopa) fermento"
-        ],
-        preparo: [
-            "Bata a cenoura, ovos e óleo no liquidificador.",
-            "Misture com o açúcar e farinha.",
-            "Adicione o fermento por último.",
-            "Asse por 40 minutos a 180°C."
-        ]
-    }
+    bovino: [
+        {
+            id: 'salGrosso',
+            nome: 'Sal Grosso',
+            dificuldade: 'finaização',
+            tempo: 'médio',    
+            imagem: 'imgCategorias/salgrosso.webp',
+            
+        },
+        
+                {
+            id: 'pimentaReino',
+            nome: 'Pimenta do Reino ',
+            dificuldade: 'cozimento',
+            tempo: 'médio',
+            imagem: 'imgCategorias/pimenta.webp',
+        },
+
+                {
+            id: 'salGrosso',
+            nome: 'cominho',
+            dificuldade: 'marinada',
+            tempo: 'marcante',
+            imagem: 'imgCategorias/cominho.webp',
+        },
+
+                {
+            id: 'alecrim',
+            nome: 'Alecrim',
+            dificuldade: 'cozimento',
+            tempo: 'médio',
+            imagem: 'imgCategorias/alecrim.jpg',
+        },
+
+                {
+            id: 'salGrosso',
+            nome: 'Páprica',
+            dificuldade: 'marinada',
+            tempo: 'suave',
+            imagem: 'imgCategorias/papricac.webp',
+        },
+
+                {
+            id: 'salGrosso',
+            nome: 'Alho Triturado',
+            dificuldade: 'refogado',
+            tempo: 'forte',
+            imagem: 'imgCategorias/alho.webp',
+        },
+
+                {
+            id: 'salGrosso',
+            nome: 'Chimichurri',
+            dificuldade: 'finalização',
+            tempo: 'médio',
+            imagem: 'imgCategorias/chimi.webp',
+        }
+    ],
+
+    aves: [
+        {
+            id: 'salGrosso',
+            nome: 'Cúrcuma',
+            dificuldade: 'cozimento',
+            tempo: 'suave',
+            imagem: 'imgCategorias/chimi.webp',   
+        },
+
+                {
+            id: 'salGrosso',
+            nome: 'Lemon Pepper',
+            dificuldade: 'finalização',
+            tempo: 'médio',
+            imagem: 'imgCategorias/chimi.webp',   
+        },
+
+                {
+            id: 'salGrosso',
+            nome: 'Páprica Doce',
+            dificuldade: 'marinada',
+            tempo: 'suave',
+            imagem: 'imgCategorias/chimi.webp',   
+        },
+
+                {
+            id: 'salGrosso',
+            nome: 'Alho em pó',
+            dificuldade: 'empanado',
+            tempo: 'médio',
+            imagem: 'imgCategorias/chimi.webp',   
+        },
+
+                {
+            id: 'salGrosso',
+            nome: 'Tomilho',
+            dificuldade: 'cozimento',
+            tempo: 'médio',
+            imagem: 'imgCategorias/chimi.webp',   
+        },
+
+                {
+            id: 'salGrosso',
+            nome: 'Curry',
+            dificuldade: 'cozimento',
+            tempo: 'forte',
+            imagem: 'imgCategorias/chimi.webp',   
+        },
+
+                {
+            id: 'salGrosso',
+            nome: 'Orégano',
+            dificuldade: 'finalização',
+            tempo: 'médio',
+            imagem: 'imgCategorias/chimi.webp',   
+        }
+    ],
+
+    peixe: [
+                        {
+            id: 'salGrosso',
+            nome: 'Limão',
+            dificuldade: 'marinada',
+            tempo: 'médio',
+            imagem: 'imgCategorias/chimi.webp',   
+        },
+
+                        {
+            id: 'salGrosso',
+            nome: 'Alho',
+            dificuldade: 'marinada',
+            tempo: 'forte',
+            imagem: 'imgCategorias/chimi.webp',   
+        },
+
+                        {
+            id: 'salGrosso',
+            nome: 'Coentro',
+            dificuldade: 'finalização',
+            tempo: 'médio',
+            imagem: 'imgCategorias/chimi.webp',   
+        },
+
+
+                        {
+            id: 'salGrosso',
+            nome: 'Pimenta do Reino',
+            dificuldade: 'finalização',
+            tempo: 'médio',
+            imagem: 'imgCategorias/chimi.webp',   
+        },
+
+                        {
+            id: 'salGrosso',
+            nome: 'Páprica Defumada',
+            dificuldade: 'marinada',
+            tempo: 'médio',
+            imagem: 'imgCategorias/chimi.webp',   
+        },
+
+            {
+            id: 'salGrosso',
+            nome: 'Gengibre',
+            dificuldade: 'marinada',
+            tempo: 'forte',
+            imagem: 'imgCategorias/chimi.webp',   
+        },
+
+                        {
+            id: 'salGrosso',
+            nome: 'Ervas Finas',
+            dificuldade: 'finalização',
+            tempo: 'suave   ',
+            imagem: 'imgCategorias/chimi.webp',   
+        }
+    ],
+
+    saladas: [
+        
+            {
+            id: 'salGrosso',
+            nome: 'Azeite de Oliva',
+            dificuldade: 'finalização',
+            tempo: 'suave',
+            imagem: 'imgCategorias/chimi.webp',   
+        },
+
+        
+            {
+            id: 'salGrosso',
+            nome: 'Vinagre Balsâmico',
+            dificuldade: 'finalização',
+            tempo: 'médio',
+            imagem: 'imgCategorias/chimi.webp',   
+        },
+
+        
+            {
+            id: 'salGrosso',
+            nome: 'Limão',
+            dificuldade: 'finalização',
+            tempo: 'médio',
+            imagem: 'imgCategorias/chimi.webp',   
+        },
+
+        
+            {
+            id: 'salGrosso',
+            nome: 'Orégano',
+            dificuldade: 'finalização',
+            tempo: 'médio',
+            imagem: 'imgCategorias/chimi.webp',   
+        },
+
+        
+            {
+            id: 'salGrosso',
+            nome: 'Mostarda',
+            dificuldade: 'molhos',
+            tempo: 'médio',
+            imagem: 'imgCategorias/chimi.webp',   
+        },
+
+        
+            {
+            id: 'salGrosso',
+            nome: 'Pimenta do Reino',
+            dificuldade: 'finalização',
+            tempo: 'médio',
+            imagem: 'imgCategorias/chimi.webp',   
+        },
+
+        
+            {
+            id: 'salGrosso',
+            nome: 'Sal rosa',
+            dificuldade: 'finalização',
+            tempo: 'médio',
+            imagem: 'imgCategorias/chimi.webp',   
+        }
+    ]
 };
