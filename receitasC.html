@@ -143,7 +143,7 @@
 
 <body>
 
-    <a href="index.html#categoria" class="back-btn">← Voltar </a>
+    <a href="index.php#categoria" class="back-btn">← Voltar </a>
     <h1 id="tituloCategoria">Receitas</h1>
 
     <div class="area-add">
@@ -196,6 +196,23 @@
 
 
             // 2. Coleta os parâmetros da URL (busca ou categoria)
+                const params = new URLSearchParams(window.location.search);
+            const termoPesquisa = params.get('search');
+            const categoriaUrl = params.get('cat');
+            
+            // 3. Lógica de visibilidade do botão (CORREÇÃO FINAL)
+            const areaAddBtn = document.querySelector('.area-add');
+
+            // CORREÇÃO: VERIFICA APENAS A PRESENÇA DO PARÂMETRO 'cat' na URL
+            if (areaAddBtn && categoriaUrl) {
+                // Se o parâmetro 'cat' estiver na URL, MOSTRA o botão de adicionar
+                areaAddBtn.style.display = 'flex'; 
+                
+                // CRÍTICO: Ajusta o botão para redirecionar para a criação de receita JÁ COM a categoria pré-selecionada.
+                document.querySelector('.add-btn').onclick = function() {
+                    window.location.href = `criarReceita.php?cat=${categoriaUrl}`;
+                };
+            }
 
 
 
@@ -250,6 +267,7 @@
                     <img src="${r.imagem}" alt="${r.nome}">
                     <div class="card-content">
                     <h3>${r.nome}</h3>
+                    <p>${r.dificuldade} • ${r.tempo}</p>
                     </div>
                 </a>
                 `;

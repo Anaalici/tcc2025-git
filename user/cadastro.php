@@ -1,48 +1,92 @@
 <?php
 include '../conexao.php';
 
-$mensagem = ""; 
+$mensagem = "";
+$mensagem_tipo = "";
 
+// Quando enviar o formulário
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    ob_start(); // evita erro de header
+
     $nome = trim($_POST['nomeUsuario'] ?? '');
     $dataNasc = trim($_POST['dataNasc'] ?? '');
     $cpf_formatado = trim($_POST['cpf'] ?? '');
     $email = trim($_POST['email'] ?? '');
     $contato_formatado = trim($_POST['contato'] ?? '');
-    $senha = $_POST['senha'] ?? ''; 
-    
+    $senha = $_POST['senha'] ?? '';
+
+    // Remover máscara
     $cpf = preg_replace('/[^0-9]/', '', $cpf_formatado);
     $contato = preg_replace('/[^0-9]/', '', $contato_formatado);
-    
 
-    if (empty($nome) || empty($dataNasc) || empty($cpf) || empty($email) || empty($contato) || empty($senha) || strlen($senha) < 8 || strlen($cpf) !== 11 || strlen($contato) < 10 || strlen($contato) > 11) {
+    // Validação básica
+    if (
+        empty($nome) ||
+        empty($dataNasc) ||
+        empty($cpf) ||
+        empty($email) ||
+        empty($contato) ||
+        empty($senha) ||
+        strlen($senha) < 8 ||
+        strlen($cpf) !== 11 ||
+        strlen($contato) < 10 ||
+        strlen($contato) > 11
+    ) {
         $mensagem = "ERRO: Verifique se todos os campos foram preenchidos corretamente (Senha mín. 8 dígitos, CPF 11, Contato 10/11).";
+        $mensagem_tipo = "erro";
+
     } else {
+
+        // Verificar se o CPF já existe
         $sql_check = "SELECT cpf FROM usuario WHERE cpf = ?";
         $stmt_check = $conexao->prepare($sql_check);
+
+        if (!$stmt_check) {
+            die("ERRO NA QUERY: " . $conexao->error);
+        }
+
         $stmt_check->bind_param("s", $cpf);
         $stmt_check->execute();
         $result_check = $stmt_check->get_result();
 
         if ($result_check->num_rows > 0) {
+
             $mensagem = "ERRO: Já existe um usuário cadastrado com este CPF.";
+            $mensagem_tipo = "erro";
+
         } else {
+
+            // Inserir usuário
             $senha_hash = password_hash($senha, PASSWORD_DEFAULT);
-            $sql_insert = "INSERT INTO usuario (nomeUsuario, dataNasc, cpf, email, contato, senha) VALUES (?, ?, ?, ?, ?, ?)";
+
+            $sql_insert = "INSERT INTO usuario (nomeUsuario, dataNasc, cpf, email, contato, senha)
+                           VALUES (?, ?, ?, ?, ?, ?)";
+
             $stmt_insert = $conexao->prepare($sql_insert);
+
+            if (!$stmt_insert) {
+                die("ERRO AO PREPARAR INSERT: " . $conexao->error);
+            }
+
             $stmt_insert->bind_param("ssssss", $nome, $dataNasc, $cpf, $email, $contato, $senha_hash);
-            
+
             if ($stmt_insert->execute()) {
-                $mensagem = "USUÁRIO CADASTRADO COM SUCESSO! Redirecionando...";
-                header("refresh:3; url=../index.html");
+                ob_end_clean();
+                header("Location: ../index.php");
                 exit();
             } else {
                 $mensagem = "ERRO AO CADASTRAR: " . $stmt_insert->error;
+                $mensagem_tipo = "erro";
             }
+
             $stmt_insert->close();
         }
+
         $stmt_check->close();
     }
+
+    ob_end_flush();
 }
 ?>
 <!DOCTYPE html>
@@ -52,19 +96,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="../user/user.css">
-    <script src="mascaras.js" defer></script> 
+    <script src="mascaras.js" defer></script>
     <title>Cadastro - Receitas de Mestre</title>
-        <link rel="icon" href="img/favicon.png" type="image/png">
-
+    <link rel="icon" href="img/favicon.png" type="image/png">
 </head>
 <body>
-    
+
 <div class="tela">
     <section class="lado-esquerdo">
         <h1 class="h2-cad">Sign up</h1>
-        
+
         <?php if (!empty($mensagem)): ?>
-            <p style="color: red; font-weight: bold; padding: 10px; border: 1px solid red; background-color: #ffe0e0;"><?= $mensagem ?></p>
+            <p style="color: <?= $mensagem_tipo === 'erro' ? 'red' : 'green' ?>;
+                      font-weight: bold;
+                      padding: 10px;
+                      border: 1px solid <?= $mensagem_tipo === 'erro' ? 'red' : 'green' ?>;
+                      background-color: <?= $mensagem_tipo === 'erro' ? '#ffe0e0' : '#e6ffe6' ?>;">
+                <?= $mensagem ?>
+            </p>
         <?php endif; ?>
 
         <div class="social-icons">
@@ -74,31 +123,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
 
         <div class="inputs">
-        <form class="formulario" id="cadastroForm" method="POST" action="cadastro.php"> 
+            <form class="formulario" id="cadastroForm" method="POST" action="cadastro.php">
 
-            <input type="text" name="fakeuser" autocomplete="username" style="display:none">
-            <input type="password" name="fakepass" autocomplete="new-password" style="display:none">
-        
-            <input class="inputLogin" type="text" name="nomeUsuario" placeholder="User" required autocomplete="off">
-            <input class="inputLogin" type="date" name="dataNasc" required autocomplete="off">
-            <input class="inputLogin" type="text" id="cpf" name="cpf" maxlength="14" placeholder="000.000.000-00" required autocomplete="off"> 
-            <input class="inputLogin" type="email" name="email" placeholder="E-mail" required autocomplete="off">
-            <input class="inputLogin" type="text" id="contato" name="contato" maxlength="15" placeholder="(00) 00000-0000" required autocomplete="off"> 
+                <input type="text" name="fakeuser" autocomplete="username" style="display:none">
+                <input type="password" name="fakepass" autocomplete="new-password" style="display:none">
 
-            <div class="input-group">
-                <input class="inputLogin" type="password" id="senha" name="senha" placeholder="Senha" required autocomplete="new-password">
-                <span toggle="#senha" class="fas fa-eye toggle-password" onclick="mostrarOcultarSenha(this)"></span>
-            </div>
-            
-            <div class="termos-aceite">
-                <input type="checkbox" id="termos" required>
-                <label for="termos">Li e aceito o <a href="termos.php">Termo de Uso</a></label> 
-            </div>
+                <input class="inputLogin" type="text" name="nomeUsuario" placeholder="User" required autocomplete="off">
+                <input class="inputLogin" type="date" name="dataNasc" required autocomplete="off">
+                <input class="inputLogin" type="text" id="cpf" name="cpf" maxlength="14" placeholder="000.000.000-00" required autocomplete="off">
+                <input class="inputLogin" type="email" name="email" placeholder="E-mail" required autocomplete="off">
+                <input class="inputLogin" type="text" id="contato" name="contato" maxlength="15" placeholder="(00) 00000-0000" required autocomplete="off">
 
-            <input class="btn" type="submit" name="cadastrar" value="Cadastrar">
+                <div class="input-group">
+                    <input class="inputLogin" type="password" id="senha" name="senha" placeholder="Senha" required autocomplete="new-password">
+                    <span toggle="#senha" class="fas fa-eye toggle-password" onclick="mostrarOcultarSenha(this)"></span>
+                </div>
 
-            <p class="cadastro-conta">Já tem uma conta? <a href="../user/login.php" class="cadastro">Entrar</a></p>
-        </form>
+                <div class="termos-aceite">
+                    <input type="checkbox" id="termos" required>
+                    <label for="termos">Li e aceito o <a href="termos.php">Termo de Uso</a></label>
+                </div>
+
+                <input class="btn" type="submit" name="cadastrar" value="Cadastrar">
+
+                <p class="cadastro-conta">Já tem uma conta? <a href="../user/login.php" class="cadastro">Entrar</a></p>
+            </form>
         </div>
     </section>
 

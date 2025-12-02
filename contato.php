@@ -101,7 +101,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <header id="main-header">
             <div class="container">
                 <div class="flex">
-                    <a href="index.html"><img class="logo" src="./img/LogoTCC.png"></a>
+                    <a href="index.php"><img class="logo" src="./img/LogoTCC.png"></a>
                     <nav>
                         <ul class="menu">
                             <li><a href="index.html">Home</a></li>
