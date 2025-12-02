@@ -19,7 +19,7 @@ body {
 }
 
 html {
-  height: 500vh;
+  height: 400vh;
 }
 
 #main-header {
@@ -400,18 +400,122 @@ a {
   box-shadow: 0 0.5em 1em rgba(0, 0, 0, 0.15);
 }
 
-/**/
-.footer {
-  background-color: #FFD9A6; /* laranja claro */
-  padding: 2em 1em;
-  margin-top: 3em;
-  text-align: center;
-  color: #5a3b1e; /* marrom suave */
-  font-family: Arial, sans-serif;
+
+.site-footer {
+    background-color: #FF9933; /* Fundo: Laranja claro e menos chamativo */
+    color: #FFFFFF;
+    margin-top: 10rem;
+    padding: 3em 5vw 0; /* Aumenta um pouco o padding para dar mais ar */
+    box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.2); /* Sombra mais forte e decorativa */
+    border-radius: 0.5rem;
 }
 
-.footer-title {
-  margin: 0;
-  font-size: 1.6em;
-  font-weight: bold;
+.footer-content {
+    display: flex;
+    justify-content: space-between; /* Garante que as colunas fiquem lado a lado */
+    flex-wrap: wrap; 
+    max-width: 1200px; 
+    margin: 0 auto;
+    padding-bottom: 2.5em;
+}
+
+.footer-section {
+    /* Divide o espaço em 3 colunas iguais com margem */
+    width: 30%; 
+    min-width: 200px;
+    margin-bottom: 2em;
+}
+
+.footer-section h3 {
+    font-size: 1.4em; /* Títulos um pouco maiores */
+    margin-bottom: 1.2em;
+    font-weight: 700;
+    position: relative;
+    /* Linha decorativa abaixo do título */
+    padding-bottom: 0.5em;
+}
+
+.footer-section h3::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 30px; /* Largura da linha */
+    height: 2px;
+    background-color: #FFFFFF;
+}
+
+/* Estilo dos Links */
+.footer-links ul, .footer-recursos ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links li, .footer-recursos li {
+    margin-bottom: 0.7em;
+}
+
+.footer-links a, .footer-recursos a, .footer-contact a {
+    color: #FFFFFF;
+    text-decoration: none;
+    transition: color 0.3s;
+    font-size: 0.95em;
+}
+
+/* Efeito Hover: Branco Notável */
+.footer-links a:hover, .footer-recursos a:hover, .footer-contact a:hover {
+    color: #FFFFFF; 
+    text-decoration: none; /* Remove underline no hover, confiando apenas na mudança de cor */
+    font-weight: bold; /* Adiciona peso para ser mais notável */
+}
+
+/* Estilo do Contato */
+.footer-contact p {
+    margin-bottom: 0.8em;
+    display: flex;
+    align-items: center;
+    gap: 0.8em;
+}
+
+.footer-contact i {
+    font-size: 1.2em;
+    margin-top: 0;
+}
+
+/* Separador decorativo */
+.divider {
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.4);
+    width: 100%;
+    margin-top: 1.5em;
+}
+
+/* Barra Inferior */
+.footer-bottom {
+    text-align: center;
+    padding: 1.5em 0;
+    font-size: 0.9em;
+    /* Removido o border-top daqui, pois o divider já existe */
+}
+
+/* Media Query para responsividade em telas pequenas */
+@media (max-width: 768px) {
+    .footer-content {
+        flex-direction: column;
+        align-items: center;
+    }
+    .footer-section {
+        width: 80%;
+        text-align: center;
+    }
+    .footer-section h3::after {
+        left: 50%;
+        transform: translateX(-50%); /* Centraliza a linha decorativa */
+    }
+    .footer-links ul, .footer-recursos ul {
+        text-align: center;
+    }
+    .footer-contact p {
+        justify-content: center;
+    }
 }

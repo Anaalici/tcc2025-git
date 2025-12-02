@@ -220,9 +220,50 @@ if (isset($_SESSION['user_id']) && is_numeric($_SESSION['user_id'])) {
 
         </section>
 
+    <footer class="site-footer">
+        <div class="footer-content">
+            
+            <div class="footer-section footer-links">
+                <h3>Navegação</h3>
+                <ul>
+                    <li><a href="termos.php">Termos de Uso</a></li>
+                    <li><a href="contato.php">Entre em Contato</a></li>
+                    <li><a href="duvidas.html">Dúvidas Frequentes (FAQ)</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section footer-recursos">
+                <h3>Recursos</h3>
+                <ul>
+                    <li><a href="guias_iniciantes.html">Guia para Iniciantes</a></li>
+                    <li><a href="receitas_populares.php">Receitas Populares</a></li>
+                    <li><a href="parceiros.php">Parceiros e Afiliados</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section footer-contact">
+                <h3>Fale Conosco</h3>
+                <p>
+                    <i class="fas fa-phone-alt"></i> 
+                    (31) 99876-5432 (Fictício)
+                </p>
+                <p>
+                    <i class="fas fa-envelope"></i> 
+                    <a href="mailto:receitadmestre@gmail.com">receitadmestre@gmail.com</a>
+                </p>
+                <div class="divider"></div> 
+            </div>
+            
+        </div>
+
+        <div class="footer-bottom">
+            &copy; 2025 Receita de Mestre | Todos os direitos reservados.
+        </div>
+    </footer>
+
 
         <script src="receitas.js" defer></script>
         <script src="script.js" defer></script>
-</body>
 
+</body>
 </html>
