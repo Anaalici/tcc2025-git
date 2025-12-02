@@ -47,8 +47,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['email'])) {
                     $mail->SMTPAuth   = true;                                   
                     $mail->Username   = 'gabrihel.camargo1234@gmail.com'; 
                     $mail->Password   = 'bwonsplblguffszz'; 
-                    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS; 
-                    $mail->Port       = 465; 
+                    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; 
+                    $mail->Port       = 587; 
                     $mail->CharSet = 'UTF-8';
                     
                     $mail->setFrom('noreply@receitademestre.com', 'Receita de Mestre');

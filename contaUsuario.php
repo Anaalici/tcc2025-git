@@ -160,45 +160,70 @@ button:hover {background: #d88000;}
 <body>
 
 <header>
-    Minha Conta
+    Minha Conta
 </header>
 
 <a href="index.html" class="back-btn">← Voltar</a>
 
 <div class="main">
 
-    <form method="POST" action="" enctype="multipart/form-data">
-        
-        <?php if (!empty($msg_status)): ?>
-            <div id="saveMsg" class="success-msg msg-<?= $msg_cor ?>" style="display:block;">
-                <?= htmlspecialchars($msg_status) ?>
-            </div>
-        <?php endif; ?>
+    <form method="POST" action="" enctype="multipart/form-data">
+        
+        <?php if (!empty($msg_status)): ?>
+            <div id="saveMsg" class="success-msg msg-<?= $msg_cor ?>" style="display:block;">
+                <?= htmlspecialchars($msg_status) ?>
+            </div>
+        <?php endif; ?>
 
-        <div class="profile-row">
-                        <img id="userPhoto" class="profile-img" src="<?= $foto_atual_url ?>?v=<?= time() ?>" alt="Foto de perfil">
-            
-            <div class="upload-box"> 
-                <label class="upload-btn" for="photoInput">Escolher Foto</label>
-                <input type="file" id="photoInput" name="photoInput" accept="image/*">
-            </div>
-        </div>
-        
-        <label>Nome Completo</label>
-        <input type="text" id="userName" name="userName" value="<?= $nomeUsuario ?>" readonly>
+        <div class="profile-row">
+            <img id="userPhoto" class="profile-img" src="<?= $foto_atual_url ?>?v=<?= time() ?>" alt="Foto de perfil">
+            
+            <div class="upload-box"> 
+                <label class="upload-btn" for="photoInput">Escolher Foto</label>
+                <input type="file" id="photoInput" name="photoInput" accept="image/*">
+            </div>
+        </div>
+        
+        <label>Nome Completo</label>
+        <input type="text" id="userName" name="userName" value="<?= $nomeUsuario ?>" readonly>
 
-        <label>Email</label>
-        <input type="email" id="userEmail" name="userEmail" value="<?= $email ?>" readonly>
+        <label>Email</label>
+        <input type="email" id="userEmail" name="userEmail" value="<?= $email ?>" readonly>
 
-        <label>Data de Nascimento</label>
-        <input type="date" id="userDataNasc" name="userDataNasc" value="<?= $dataNasc ?>" readonly>
+        <label>Data de Nascimento</label>
+        <input type="date" id="userDataNasc" name="userDataNasc" value="<?= $dataNasc ?>" readonly>
 
-        <label>Bio</label>
-        <textarea id="userBio" name="userBio" placeholder="Conte-nos um pouco sobre você..."><?= $userBio ?></textarea>
+        <label>Bio</label>
+        <textarea id="userBio" name="userBio" placeholder="Conte-nos um pouco sobre você..."><?= $userBio ?></textarea>
 
-        <button type="submit">Salvar Alterações</button>
+        <button type="submit">Salvar Alterações</button>
 
-    </form>
+    </form>
 </div>
+
+<script>
+    // 1. Seleciona o campo de input (onde o arquivo é escolhido) e a imagem de perfil (onde a pré-visualização aparece)
+    const photoInput = document.getElementById('photoInput');
+    const userPhoto = document.getElementById('userPhoto');
+
+    // 2. Adiciona um "ouvinte de evento" para detectar quando um arquivo é selecionado
+    photoInput.addEventListener('change', function(event) {
+        // Verifica se o usuário realmente selecionou um arquivo
+        if (event.target.files && event.target.files[0]) {
+            // Cria um objeto para ler o conteúdo do arquivo
+            const reader = new FileReader();
+
+            // 3. Define o que acontece quando o leitor termina de carregar o arquivo
+            reader.onload = function(e) {
+                // e.target.result contém a Data URL (a imagem codificada)
+                // Define o atributo src da imagem para exibir a pré-visualização
+                userPhoto.src = e.target.result;
+            };
+
+            // 4. Inicia a leitura do arquivo como uma Data URL (formato que o navegador pode exibir)
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    });
+</script>
 </body>
 </html>
